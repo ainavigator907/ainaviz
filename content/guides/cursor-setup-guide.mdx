@@ -1,0 +1,60 @@
+---
+title: "Cursor完全セットアップガイド【2026年版】"
+date: "2026-03-15"
+excerpt: "従来のVSCodeからCursorへ移行する手順と、AIコーディングを最大化する設定を解説。"
+category: "guide"
+tags: ["Cursor", "コーディング", "VSCode"]
+author: "AI Navigator 編集部"
+affiliate: false
+---
+
+## Cursorとは？
+
+[Cursor](https://cursor.sh) は VSCode をベースにした **AIファーストのコードエディタ**です。
+GitHub Copilot と比較して、**コンテキスト理解の深さ**と**チャットでのコード編集**が圧倒的に優れています。
+
+---
+
+## インストール手順
+
+### 1. ダウンロード
+
+公式サイト（[cursor.sh](https://cursor.sh)）から OS 対応版をダウンロード。
+
+### 2. VSCode の設定・拡張機能を引き継ぐ
+
+Cursor 初回起動時に VSCode からのインポートを選択できます。
+
+```bash
+# VSCode の設定エクスポート（手動で行う場合）
+code --list-extensions > extensions.txt
+```
+
+### 3. `.cursor/rules` ファイルで AIの振る舞いをカスタム
+
+プロジェクトルートに `.cursor/rules` を作成することで、AIに常時コンテキストを与えられます。
+
+```text
+# .cursor/rules
+あなたは TypeScript / Next.js 専門のシニアエンジニアです。
+- コードには必ず JSDoc コメントを付けてください
+- エラーハンドリングを省略しないでください
+- 日本語でコメントを書いてください
+```
+
+---
+
+## 主要ショートカット
+
+| 操作 | Windows | Mac |
+|---|---|---|
+| AIチャットを開く | `Ctrl + L` | `Cmd + L` |
+| インライン編集 | `Ctrl + K` | `Cmd + K` |
+| コード全体を説明させる | `Ctrl + Shift + L` | `Cmd + Shift + L` |
+
+---
+
+## まとめ
+
+Cursor への移行は **30分もあれば完了**します。
+無料プランでも十分強力なので、まずは試してみることをおすすめします。
