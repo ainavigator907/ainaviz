@@ -81,7 +81,7 @@ const ALL_TOOLS: ToolData[] = [
   {
     id: "cursor",
     name: "Cursor",
-    tagline: "AI搭載コードエディタ。コペイロットより速く、コンテキストが深い。",
+    tagline: "AI搭載コードエディタ。Copilotより速く、コンテキストが深い。",
     category: "コーディング",
     pricingLabel: "無料プランあり",
     speedScore: 5,
