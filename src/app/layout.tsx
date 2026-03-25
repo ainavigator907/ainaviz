@@ -3,49 +3,13 @@ import "./globals.css";
 import { GoogleAnalytics } from "@next/third-parties/google";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://ainaviz.com"),
-  title: {
-    default: "AI Navigator | 日本のビジネスプロ向けAIツール最新情報",
-    template: "%s | AI Navigator",
-  },
-  description:
-    "海外発の最新AIツールをいち早く日本語で紹介。ビジネスパーソンやAI初心者に向けたツールレビュー・使い方ガイドを毎週更新。",
-  keywords: [
-    "AIツール",
-    "AI活用",
-    "ChatGPT",
-    "生成AI",
-    "ビジネスAI",
-    "AI入門",
-    "海外AIツール",
-    "AI Navigator",
-  ],
-  authors: [{ name: "AI Navigator 編集部" }],
-  creator: "AI Navigator",
-  robots: { index: true, follow: true },
-  alternates: {
-    canonical: "/",
-    languages: { "ja-JP": "/" },
-  },
+  title: "AIナビゲーター",
+  description: "AI自動化やWeb開発の最新情報を発信",
+  // 👇 ここを追記（画像の value の値を反映させています）
   verification: {
-    google: process.env.NEXT_PUBLIC_GSC_ID || "36A_NancXPFb969Wm7js5rCZNKSpV8x08863df7ZxfA",
-  },
-  openGraph: {
-    type: "website",
-    locale: "ja_JP",
-    url: "https://ainaviz.com",
-    siteName: "AI Navigator",
-    title: "AI Navigator | 日本のビジネスプロ向けAIツール最新情報",
-    description:
-      "海外発の最新AIツールをいち早く日本語で紹介。毎週更新のツールレビュー・使い方ガイド。",
-    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "AI Navigator" }],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "AI Navigator",
-    description: "海外発の最新AIツールをいち早く日本語で紹介。",
-    images: ["/og-image.png"],
-    creator: "@ainaviz",
+    other: {
+      "impact-site-verification": ["965f9dd6-28da-4855-afd2-30ffbeecb5c8"],
+    },
   },
 };
 
