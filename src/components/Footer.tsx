@@ -15,11 +15,8 @@ export default function Footer() {
             <ul style={{ display: "flex", gap: "1.5rem", listStyle: "none" }}>
               <li><Link href="/tools" style={{ color: "var(--color-text-muted)" }}>AIツール一覧</Link></li>
               <li><Link href="/guides" style={{ color: "var(--color-text-muted)" }}>使い方ガイド</Link></li>
-              <li>
-                <Link href="/privacy-policy" style={{ color: "var(--color-text-muted)" }}>
-                  プライバシーポリシー
-                </Link>
-              </li>
+              <li><Link href="/privacy-policy" style={{ color: "var(--color-text-muted)" }}>プライバシーポリシー</Link></li>
+              <li><Link href="/terms" style={{ color: "var(--color-text-muted)" }}>免責事項</Link></li>
             </ul>
           </nav>
           <p>&copy; {new Date().getFullYear()} AI Navigator. All rights reserved.</p>
