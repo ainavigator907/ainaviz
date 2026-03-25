@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     languages: { "ja-JP": "/" },
   },
   verification: {
-    google: process.env.NEXT_PUBLIC_GSC_ID || "YOUR_VERIFICATION_ID",
+    google: process.env.NEXT_PUBLIC_GSC_ID || "36A_NancXPFb969Wm7js5rCZNKSpV8x08863df7ZxfA",
   },
   openGraph: {
     type: "website",
@@ -65,7 +65,7 @@ export default function RootLayout({
       </head>
       <body>
         {children}
-        <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID || "G-XXXXXXXXXX"} />
+        <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID || "G-TP455GZNCE"} />
       </body>
     </html>
   );
