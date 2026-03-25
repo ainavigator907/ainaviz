@@ -5,16 +5,15 @@ export default function HeroSection() {
     <section className="hero">
       <div className="container">
         <p className="hero-eyebrow">
-          <span>🌐</span> For Japanese Business Professionals
+          <span>🌐</span> 日本のビジネスパーソンのためのAIガイド
         </p>
         <h1 className="hero-title">
-          海外AIの秘密を、<br />
-          <span className="gradient-text">日本のプロへ解き明かす。</span>
+          海外の最新AIツールを、<br />
+          <span className="gradient-text">あなたのビジネスの即戦力に。</span>
         </h1>
         <p className="hero-subtitle">
-          Unlocking Overseas AI Secrets for Japanese Professionals.
-          毎週更新のAIツールレビュー・ステップバイステップガイドで、
-          あなたのビジネスを次のレベルへ。
+          生産性を劇的に高める最先端AIの活用法を、わかりやすい日本語で徹底解説。
+          独自の検証に基づくレビューと実践的なガイドで、日々の業務を次のレベルへ。
         </p>
         <div className="hero-actions">
           <Link href="/tools" className="btn btn-primary">
