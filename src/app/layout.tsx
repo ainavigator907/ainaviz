@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://ainaviz.com"),
@@ -25,6 +26,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/",
     languages: { "ja-JP": "/" },
+  },
+  verification: {
+    google: process.env.NEXT_PUBLIC_GSC_ID || "YOUR_VERIFICATION_ID",
   },
   openGraph: {
     type: "website",
@@ -59,7 +63,10 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
-      <body>{children}</body>
+      <body>
+        {children}
+        <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID || "G-XXXXXXXXXX"} />
+      </body>
     </html>
   );
 }
