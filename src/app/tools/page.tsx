@@ -143,6 +143,32 @@ const ALL_TOOLS: ToolData[] = [
     affiliateUrl: "https://perplexity.ai",
     tags: ["検索", "リサーチ", "引用"],
   },
+  {
+    id: "antigravity",
+    name: "Antigravity",
+    tagline: "最先端の自律型AIコーディングエージェント。エンジニアの作業を劇的に自動化。",
+    category: "コーディング",
+    pricingLabel: "ベータ公開中",
+    speedScore: 5,
+    rating: 5,
+    isAffiliate: false,
+    isNew: true,
+    affiliateUrl: "https://antigravity.dev",
+    tags: ["コーディング", "エージェント", "自動化"],
+  },
+  {
+    id: "canva",
+    name: "Canva Pro",
+    tagline: "AI『Magic Studio』で、デザイン未経験者でもプロ並みの資料・SNS画像を即作成。",
+    category: "デザイン",
+    pricingLabel: "無料プランあり",
+    speedScore: 5,
+    rating: 5,
+    isAffiliate: true,
+    isNew: false,
+    affiliateUrl: "https://canva.com",
+    tags: ["デザイン", "画像生成", "プレゼン"],
+  },
 ];
 
 export default function ToolsPage() {
