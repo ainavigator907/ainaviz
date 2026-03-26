@@ -39,11 +39,11 @@ function Stars({ count }: { count: number }) {
  * <AffiliateCard
  *   name="ChatGPT Plus"
  *   tagline="OpenAIの最上位プランで生産性を最大化。"
- *   highlight="GPT-4o / DALL·E 3 / Advanced Data Analysis が使い放題"
+ *   highlight="GPT-5.4 / DALL·E 3 / Advanced Data Analysis が使い放題"
  *   price="$20/月"
  *   rating={5}
  *   affiliateUrl="https://openai.com/chatgpt"
- *   features={["GPT-4o 優先アクセス", "画像生成 (DALL·E 3)", "プラグイン対応", "API割引"]}
+ *   features={["GPT-5.4 優先アクセス", "画像生成 (DALL·E 3)", "プラグイン対応", "API割引"]}
  * />
  * ```
  */

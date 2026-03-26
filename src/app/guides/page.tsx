@@ -37,7 +37,7 @@ const SEED_GUIDES = [
   {
     slug: "midjourney-prompt-tips",
     frontmatter: {
-      title: "Midjourney v6で商用OKの画像を作るプロンプト術",
+      title: "Midjourney v7で商用OKの画像を作るプロンプト術",
       excerpt: "ブランドガイドラインに沿ったビジュアル素材をAIで量産する方法を図解で説明。",
       date: "2026-03-10",
       category: "guide" as const,

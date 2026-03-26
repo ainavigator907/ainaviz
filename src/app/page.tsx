@@ -14,7 +14,7 @@ const TOOLS: ToolData[] = [
   {
     id: "chatgpt",
     name: "ChatGPT Plus",
-    tagline: "GPT-4oで文章・コード・分析を高速こなす。ビジネスの万能AIアシスタント。",
+    tagline: "GPT-5.4で文章・コード・分析を高速こなす。ビジネスの万能AIアシスタント。",
     category: "文章生成",
     pricingLabel: "$20/月",
     speedScore: 5,
@@ -22,11 +22,11 @@ const TOOLS: ToolData[] = [
     isAffiliate: true,
     isNew: false,
     affiliateUrl: "https://openai.com/chatgpt",
-    tags: ["GPT-4o", "文章生成", "コード", "API"],
+    tags: ["GPT-5.4", "文章生成", "コード", "API"],
   },
   {
     id: "claude",
-    name: "Claude 3.5 Sonnet",
+    name: "Claude Sonnet 4.6",
     tagline: "長文読解・倫理的AIで企業コンプライアンスに強い。Anthropic製。",
     category: "文章生成",
     pricingLabel: "無料プランあり",
@@ -39,7 +39,7 @@ const TOOLS: ToolData[] = [
   },
   {
     id: "midjourney",
-    name: "Midjourney v6",
+    name: "Midjourney v7",
     tagline: "プロ品質の画像生成AIで、マーケ素材・SNSビジュアルを即作成。",
     category: "画像生成",
     pricingLabel: "$10/月〜",
@@ -60,12 +60,12 @@ const TOOLS: ToolData[] = [
     rating: 5,
     isAffiliate: false,
     isNew: true,
-    affiliateUrl: "https://cursor.sh",
+    affiliateUrl: "https://cursor.com",
     tags: ["コーディング", "VSCode", "AI補完"],
   },
   {
     id: "runway",
-    name: "Runway Gen-3",
+    name: "Runway Gen-4.5",
     tagline: "テキスト・画像から高品質動画を生成。CM・プロモ動画の制作コストを激減。",
     category: "動画生成",
     pricingLabel: "$15/月〜",
@@ -107,12 +107,12 @@ const TOOLS: ToolData[] = [
     name: "Antigravity",
     tagline: "開発プロセスを根本から変える、自律型AIコーディングエージェント。",
     category: "コーディング",
-    pricingLabel: "ベータ公開中",
+    pricingLabel: "完全無料",
     speedScore: 5,
     rating: 5,
     isAffiliate: false,
     isNew: true,
-    affiliateUrl: "https://antigravity.dev",
+    affiliateUrl: "https://antigravity.google",
     tags: ["コーディング", "エージェント", "自動化"],
   },
   {
@@ -149,7 +149,7 @@ const GUIDES = [
   },
   {
     slug: "claude-nda-review",
-    title: "Claude 3.5 Sonnetで長文の契約書・NDAを爆速チェック",
+    title: "Claude Sonnet 4.6で長文の契約書・NDAを爆速チェック",
     excerpt: "総務・法務の強い味方。長文読解に優れたClaudeを使って、契約書のリスク確認を半自動化する活用法。",
     date: "2026-03-24",
     category: "guide",
@@ -194,13 +194,13 @@ export default function HomePage() {
             <div style={{ maxWidth: "640px" }}>
               <AffiliateCard
                 name="ChatGPT Plus"
-                tagline="GPT-4oで文章・コード・画像生成・データ分析が一括でこなせる、ビジネスパーソン最強のAIアシスタント。"
-                highlight="GPT-4o・DALL·E 3・Advanced Data Analysisが使い放題。API割引も適用。"
+                tagline="GPT-5.4で文章・コード・画像生成・データ分析が一括でこなせる、ビジネスパーソン最強のAIアシスタント。"
+                highlight="GPT-5.4・DALL·E 3・Advanced Data Analysisが使い放題。API割引も適用。"
                 price="$20/月"
                 rating={5}
                 affiliateUrl="https://openai.com/chatgpt"
                 features={[
-                  "GPT-4o 優先アクセス（速度・精度最優先）",
+                  "GPT-5.4 優先アクセス（速度・精度最優先）",
                   "DALL·E 3 画像生成（プロ品質）",
                   "Advanced Data Analysis（Excelより賢い）",
                   "カスタムGPT作成・共有",
