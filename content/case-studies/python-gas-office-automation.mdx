@@ -1,0 +1,141 @@
+---
+title: "Python×GASで事務作業を全自動化——ルーティン業務から完全解放された実録"
+date: "2026-03-10"
+excerpt: "勤怠集計・経費申請確認・備品発注アラートなど、総務部の反復作業をPython + Google Apps Scriptで全自動化。年間240時間を取り戻した仕組みを全公開。"
+category: "case-study"
+tags: ["Python", "GAS", "自動化", "バックオフィス"]
+author: "ソラ"
+scale: "2,500名規模の組織 / 総務部4名体制"
+aiUsed: ["Claude Code", "Gemini API", "Python", "GAS"]
+readTime: "13分"
+---
+
+## 「ルーティン業務地獄」からの脱出
+
+総務部4名で2,500名の組織を支える環境では、
+毎月同じ作業を繰り返す「ルーティン業務」が膨大です。
+
+- 月末：勤怠データの集計と確認
+- 月初：経費精算の確認とリマインド送信
+- 週次：備品在庫のチェックと発注判断
+- 随時：各種申請フローの進捗確認
+
+これらをすべて**「人間が毎回やる」前提で設計されていた**ことが問題でした。
+
+## 自動化の全体マップ
+
+構築した自動化システムの全体像です。
+
+```
+[データソース]
+スプレッドシート / Googleフォーム / メール
+
+      ↓ GAS（データ取得・加工のトリガー）
+
+[処理エンジン]
+Python スクリプト（複雑な計算・判断ロジック）
+Gemini API（テキスト解析・判断支援）
+
+      ↓
+
+[アウトプット]
+Slack通知 / Gmailによる自動送信 / スプレッドシート更新
+```
+
+## 自動化①：勤怠集計レポート
+
+**所要時間の変化：月4時間 → 0分（完全自動）**
+
+月末になると自動でトリガーが走り、以下を実行します。
+
+1. 勤怠管理スプレッドシートからデータ取得（GAS）
+2. Pythonで残業時間・有休残日数・月次集計を計算
+3. 異常値（残業80時間超・有休消化率低すぎ等）を検出
+4. 部署別レポートをPDFで自動生成
+5. 各部署長にメールで自動送信
+
+```python
+# 勤怠異常値検出の一部（Claude Codeが生成）
+def detect_overtime_anomaly(records: list[dict]) -> list[dict]:
+    alerts = []
+    for record in records:
+        overtime_hours = record.get("overtime_hours", 0)
+        if overtime_hours >= 80:
+            alerts.append({
+                "employee_id": record["id"],
+                "name": record["name"],
+                "overtime": overtime_hours,
+                "level": "critical" if overtime_hours >= 100 else "warning"
+            })
+    return alerts
+```
+
+## 自動化②：経費精算リマインド
+
+**所要時間の変化：週2時間 → 0分**
+
+Googleフォームで受け付けた経費精算申請を監視し、
+承認が3営業日以上滞っている場合は承認者にSlack通知を自動送信。
+
+```javascript
+// GASのトリガー関数（毎朝9時に実行）
+function checkPendingExpenses() {
+  const sheet = SpreadsheetApp.openById(SHEET_ID).getActiveSheet();
+  const today = new Date();
+  const data = sheet.getDataRange().getValues();
+
+  data.forEach((row, index) => {
+    if (index === 0) return; // ヘッダースキップ
+    const submittedDate = new Date(row[1]);
+    const status = row[4];
+    const daysPending = Math.floor((today - submittedDate) / 86400000);
+
+    if (status === "pending" && daysPending >= 3) {
+      sendSlackReminder(row[3], row[0], daysPending); // 承認者ID・申請者名・日数
+    }
+  });
+}
+```
+
+## 自動化③：備品発注アラート
+
+**所要時間の変化：週1時間 → 0分**
+
+在庫管理スプレッドシートの数量が閾値を下回ると、
+Amazonリンク付きで発注担当者にSlack通知が自動送信されます。
+
+Gemini APIが各備品の「消費ペース」を学習し、
+**在庫がゼロになる日付を予測**して事前アラートを送る機能も追加しました。
+
+## 全体の成果
+
+| 業務 | 月間工数（以前） | 月間工数（自動化後） |
+|------|---------------|------------------|
+| 勤怠集計 | 4時間 | 0時間 |
+| 経費精算管理 | 8時間 | 0.5時間（確認のみ） |
+| 備品在庫管理 | 4時間 | 0時間 |
+| 各種申請進捗確認 | 6時間 | 1時間 |
+| **月間合計** | **22時間** | **1.5時間** |
+
+**年間換算で約240時間（月20時間）の削減**を実現。
+4名体制の総務部に、実質1名分の余力が生まれました。
+
+## 自動化のコツ：「失敗が怖い業務」から始めない
+
+自動化の順番は重要です。
+最初から「失敗したら困る業務」を自動化すると、ミスが怖くてやめてしまいます。
+
+おすすめの順番：
+1. **通知・リマインド系**（送信失敗してもすぐわかる・再送できる）
+2. **集計・レポート系**（数値ミスは人間が確認できる）
+3. **外部連携・発注系**（実害が出る可能性があるので最後）
+
+## まとめ
+
+「プログラミングができない」は、もはや自動化の壁ではありません。
+Claude Codeに「〇〇という業務を自動化するコードを書いて」と指示すれば、
+動くコードが生成されます。
+
+重要なのは**業務の流れを言語化できること**です。
+「何を・いつ・どうやって・誰に渡すか」を明確にできれば、
+AIがコードに翻訳してくれます。

@@ -1,285 +1,445 @@
-"use client";
-
-import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import HeroSection from "@/components/HeroSection";
-import SearchBar, { type ToolData } from "@/components/SearchBar";
-import ToolCard from "@/components/ToolCard";
-import AffiliateCard from "@/components/AffiliateCard";
+import SpeedBadge from "@/components/SpeedBadge";
+import { getAllArticles } from "@/lib/mdx";
 import Link from "next/link";
+import type { Metadata } from "next";
 
-// ─── Seed Data ────────────────────────────────────────────────────────────────
-const TOOLS: ToolData[] = [
-  {
-    id: "chatgpt",
-    name: "ChatGPT Plus",
-    tagline: "GPT-5.4で文章・コード・分析を高速こなす。ビジネスの万能AIアシスタント。",
-    category: "文章生成",
-    pricingLabel: "$20/月",
-    speedScore: 5,
-    rating: 5,
-    isAffiliate: true,
-    isNew: false,
-    affiliateUrl: "https://openai.com/chatgpt",
-    tags: ["GPT-5.4", "文章生成", "コード", "API"],
-  },
-  {
-    id: "claude",
-    name: "Claude Sonnet 4.6",
-    tagline: "長文読解・倫理的AIで企業コンプライアンスに強い。Anthropic製。",
-    category: "文章生成",
-    pricingLabel: "無料プランあり",
-    speedScore: 4,
-    rating: 5,
-    isAffiliate: false,
-    isNew: true,
-    affiliateUrl: "https://claude.ai",
-    tags: ["長文", "倫理AI", "分析"],
-  },
-  {
-    id: "midjourney",
-    name: "Midjourney v7",
-    tagline: "プロ品質の画像生成AIで、マーケ素材・SNSビジュアルを即作成。",
-    category: "画像生成",
-    pricingLabel: "$10/月〜",
-    speedScore: 4,
-    rating: 4,
-    isAffiliate: true,
-    isNew: false,
-    affiliateUrl: "https://midjourney.com",
-    tags: ["画像生成", "デザイン", "SNS"],
-  },
-  {
-    id: "cursor",
-    name: "Cursor",
-    tagline: "AI搭載コードエディタ。Copilotより速く、コンテキストが深い。",
-    category: "コーディング",
-    pricingLabel: "無料プランあり",
-    speedScore: 5,
-    rating: 5,
-    isAffiliate: false,
-    isNew: true,
-    affiliateUrl: "https://cursor.com",
-    tags: ["コーディング", "VSCode", "AI補完"],
-  },
-  {
-    id: "runway",
-    name: "Runway Gen-4.5",
-    tagline: "テキスト・画像から高品質動画を生成。CM・プロモ動画の制作コストを激減。",
-    category: "動画生成",
-    pricingLabel: "$15/月〜",
-    speedScore: 3,
-    rating: 4,
-    isAffiliate: true,
-    isNew: false,
-    affiliateUrl: "https://runwayml.com",
-    tags: ["動画生成", "CM", "クリエイティブ"],
-  },
-  {
-    id: "elevenlabs",
-    name: "ElevenLabs",
-    tagline: "リアルな音声クローン・ナレーション生成。ポッドキャスト・研修動画に最適。",
-    category: "音声",
-    pricingLabel: "無料プランあり",
-    speedScore: 5,
-    rating: 4,
-    isAffiliate: false,
-    isNew: false,
-    affiliateUrl: "https://elevenlabs.io",
-    tags: ["音声合成", "TTS", "ナレーション"],
-  },
-  {
-    id: "gemini",
-    name: "Google AI Plus (Gemini)",
-    tagline: "Google Workspace連携と100万トークンの文脈窓。大容量ドキュメント解析の王者。",
-    category: "文章生成",
-    pricingLabel: "$20/月〜",
-    speedScore: 4,
-    rating: 5,
-    isAffiliate: false,
-    isNew: true,
-    affiliateUrl: "https://gemini.google.com",
-    tags: ["Google AI", "Gemini", "Workspace", "分析"],
-  },
-  {
-    id: "antigravity",
-    name: "Antigravity",
-    tagline: "開発プロセスを根本から変える、自律型AIコーディングエージェント。",
-    category: "コーディング",
-    pricingLabel: "完全無料",
-    speedScore: 5,
-    rating: 5,
-    isAffiliate: false,
-    isNew: true,
-    affiliateUrl: "https://antigravity.google",
-    tags: ["コーディング", "エージェント", "自動化"],
-  },
-  {
-    id: "canva",
-    name: "Canva Pro",
-    tagline: "AI『Magic Studio』で、デザイン未経験者でもプロ並みのバナー・動画を即作成。",
-    category: "デザイン",
-    pricingLabel: "無料プランあり",
-    speedScore: 5,
-    rating: 5,
-    isAffiliate: true,
-    isNew: false,
-    affiliateUrl: "https://canva.com",
-    tags: ["デザイン", "画像生成", "SNS", "バナー"],
-  },
-];
+export const metadata: Metadata = {
+  title: "ソラの秘密基地 | AI×実務の実験場",
+  description:
+    "延べ3,000人規模の運用実績を持つ現役総務部長・ソラが送る、AI×実務の実験場。DX改善実録、自作ツール、ガジェット検証を発信。",
+};
 
-const GUIDES = [
+// ─── Lab Tools Preview (static, /lab が準備中なのでデモデータ) ──────────────
+const LAB_TOOLS_PREVIEW = [
   {
-    slug: "chatgpt-business-prompts",
-    title: "ChatGPTビジネス活用｜即使える日本語プロンプト20選",
-    excerpt: "会議議事録・メール返信・資料作成まで、コピペで使えるプロンプトを完全網羅。",
-    date: "2026-03-20",
-    category: "guide",
-    readTime: "8分",
+    id: "meeting-minutes",
+    name: "議事録AI自動生成",
+    description: "Whisper + Claude で音声→議事録を全自動化。5分の録音を30秒で要約。",
+    aiUsed: ["Whisper", "Claude"],
+    status: "coming" as const,
   },
   {
-    slug: "cursor-setup-guide",
-    title: "Cursor完全セットアップガイド【2026年版】",
-    excerpt: "従来のVSCodeからCursorへ移行する手順と、AIコーディングを最大化する設定を解説。",
-    date: "2026-03-15",
-    category: "guide",
-    readTime: "12分",
+    id: "gas-email-bot",
+    name: "GASメール仕分けBot",
+    description: "受信メールをAIが自動分類・返信テンプレートを生成。定型返信ゼロへ。",
+    aiUsed: ["Gemini", "GAS"],
+    status: "coming" as const,
   },
   {
-    slug: "claude-nda-review",
-    title: "Claude Sonnet 4.6で長文の契約書・NDAを爆速チェック",
-    excerpt: "総務・法務の強い味方。長文読解に優れたClaudeを使って、契約書のリスク確認を半自動化する活用法。",
-    date: "2026-03-24",
-    category: "guide",
-    readTime: "7分",
-  },
-  {
-    slug: "notion-ai-manuals",
-    title: "Notion AIで「社内マニュアル」を自動生成・整理する",
-    excerpt: "散らかりがちな社内ルールや業務手順書を、Notion AIを使って一瞬で構造化し、誰でも検索・閲覧できる状態にする。",
-    date: "2026-03-23",
-    category: "guide",
-    readTime: "6分",
-  },
-  {
-    slug: "whisper-meeting-minutes",
-    title: "議事録作成を完全自動化！Whisper × AI要約の無料構築フロー",
-    excerpt: "録音データから高精度な文字起こしを行い、AIで要約するまでの「お金をかけない」議事録自動化の仕組みを解説します。",
-    date: "2026-03-22",
-    category: "guide",
-    readTime: "10分",
+    id: "approval-doc-gen",
+    name: "稟議書ジェネレーター",
+    description: "製品仕様を入力するだけで、稟議が通る比較表付き文書を自動生成。",
+    aiUsed: ["Claude", "Next.js"],
+    status: "coming" as const,
   },
 ];
 
 export default function HomePage() {
-  const [filteredTools, setFilteredTools] = useState<ToolData[]>(TOOLS);
+  const caseStudies = getAllArticles("case-studies").slice(0, 3);
+  const reviews = getAllArticles("reviews").slice(0, 3);
 
   return (
     <>
       <Navbar />
       <main>
         {/* ── Hero ── */}
-        <HeroSection />
-
-        {/* ── Featured Affiliate ── */}
-        <section className="section" style={{ paddingTop: "2rem" }}>
+        <section className="hero">
           <div className="container">
-            <div className="section-label">
-              <div className="section-label-line" />
-              <span className="section-label-text">注目のおすすめツール</span>
+            <div className="hero-eyebrow">
+              <span>⚡</span>
+              <span>AI Navigator · ソラの秘密基地</span>
             </div>
-            <h2 className="section-title">編集部ピックアップ</h2>
-            <div style={{ maxWidth: "640px" }}>
-              <AffiliateCard
-                name="ChatGPT Plus"
-                tagline="GPT-5.4で文章・コード・画像生成・データ分析が一括でこなせる、ビジネスパーソン最強のAIアシスタント。"
-                highlight="GPT-5.4・DALL·E 3・Advanced Data Analysisが使い放題。API割引も適用。"
-                price="$20/月"
-                rating={5}
-                affiliateUrl="https://openai.com/chatgpt"
-                features={[
-                  "GPT-5.4 優先アクセス（速度・精度最優先）",
-                  "DALL·E 3 画像生成（プロ品質）",
-                  "Advanced Data Analysis（Excelより賢い）",
-                  "カスタムGPT作成・共有",
-                ]}
-              />
+            <h1 className="hero-title">
+              延べ<span className="gradient-text">3,000人規模</span>の<br />
+              運用実績を持つ総務部長が送る、<br />
+              <span className="gradient-text">AI×実務</span>の実験場
+            </h1>
+            <p className="hero-subtitle">
+              現役総務部長・ソラが、実際の業務で培ったAI活用知見を公開。
+              「動くツール」「実録DX事例」「プロ視点のガジェット検証」を届けます。
+            </p>
+            <div className="hero-actions">
+              <Link href="/case-studies" className="btn btn-primary">
+                DX実録を読む →
+              </Link>
+              <Link href="/lab" className="btn btn-outline">
+                ラボを見る
+              </Link>
+            </div>
+
+            {/* Speed Badge */}
+            <div style={{ marginTop: "2rem" }}>
+              <SpeedBadge />
+            </div>
+
+            {/* Stats row */}
+            <div
+              style={{
+                display: "flex",
+                gap: "2.5rem",
+                marginTop: "3rem",
+                flexWrap: "wrap",
+              }}
+            >
+              {[
+                { value: "3,000+", label: "延べ運用ユーザー" },
+                { value: "7+", label: "DX実録記事" },
+                { value: "WP→Next.js", label: "爆速化移行済み" },
+              ].map(({ value, label }) => (
+                <div key={label}>
+                  <p
+                    style={{
+                      fontSize: "1.75rem",
+                      fontWeight: 800,
+                      background:
+                        "linear-gradient(135deg, var(--color-primary-light), var(--color-secondary))",
+                      WebkitBackgroundClip: "text",
+                      WebkitTextFillColor: "transparent",
+                      backgroundClip: "text",
+                    }}
+                  >
+                    {value}
+                  </p>
+                  <p
+                    style={{
+                      fontSize: "0.8rem",
+                      color: "var(--color-text-muted)",
+                      marginTop: "0.15rem",
+                    }}
+                  >
+                    {label}
+                  </p>
+                </div>
+              ))}
             </div>
           </div>
         </section>
 
-        {/* ── AI Tool Database ── */}
+        {/* ── Section 1: ラボツール ── */}
         <section className="section">
           <div className="container">
             <div className="section-label">
               <div className="section-label-line" />
-              <span className="section-label-text">AI Tool Database</span>
+              <span className="section-label-text">🔬 Lab Tools</span>
             </div>
-            <h2 className="section-title">最新AIツール一覧</h2>
-
-            <SearchBar tools={TOOLS} onFilter={setFilteredTools} />
-
-            {filteredTools.length === 0 ? (
-              <p style={{ textAlign: "center", color: "var(--color-text-muted)", padding: "3rem 0" }}>
-                該当するツールが見つかりません。別のキーワードをお試しください。
-              </p>
-            ) : (
-              <div className="tool-grid">
-                {filteredTools.map((tool) => (
-                  <ToolCard key={tool.id} tool={tool} />
-                ))}
-              </div>
-            )}
-
-            <div style={{ textAlign: "center", marginTop: "2.5rem" }}>
-              <Link href="/tools" className="btn btn-outline">
-                すべてのAIツールを見る →
+            <div
+              style={{
+                display: "flex",
+                alignItems: "flex-end",
+                justifyContent: "space-between",
+                marginBottom: "2rem",
+                flexWrap: "wrap",
+                gap: "1rem",
+              }}
+            >
+              <h2 style={{ margin: 0 }}>自作ツール・実験場</h2>
+              <Link
+                href="/lab"
+                style={{
+                  fontSize: "0.85rem",
+                  color: "var(--color-primary-light)",
+                  fontWeight: 600,
+                }}
+              >
+                すべて見る →
               </Link>
+            </div>
+
+            <div className="tool-grid">
+              {LAB_TOOLS_PREVIEW.map((tool) => (
+                <div
+                  key={tool.id}
+                  className="card"
+                  style={{ padding: "1.5rem", position: "relative" }}
+                >
+                  {/* Coming soon overlay */}
+                  <div
+                    style={{
+                      position: "absolute",
+                      top: "1rem",
+                      right: "1rem",
+                      fontSize: "0.68rem",
+                      fontWeight: 700,
+                      textTransform: "uppercase",
+                      letterSpacing: "0.06em",
+                      background: "rgba(99 102 241 / 0.15)",
+                      color: "var(--color-primary-light)",
+                      border: "1px solid rgba(99 102 241 / 0.3)",
+                      borderRadius: "999px",
+                      padding: "0.2rem 0.6rem",
+                    }}
+                  >
+                    準備中
+                  </div>
+                  <h3 style={{ fontSize: "1.05rem", marginBottom: "0.5rem", paddingRight: "5rem" }}>
+                    {tool.name}
+                  </h3>
+                  <p
+                    style={{
+                      fontSize: "0.875rem",
+                      color: "var(--color-text-muted)",
+                      lineHeight: 1.6,
+                      marginBottom: "1rem",
+                    }}
+                  >
+                    {tool.description}
+                  </p>
+                  <div style={{ display: "flex", gap: "0.4rem", flexWrap: "wrap" }}>
+                    {tool.aiUsed.map((ai) => (
+                      <span
+                        key={ai}
+                        style={{
+                          fontSize: "0.7rem",
+                          background: "rgba(6 182 212 / 0.1)",
+                          color: "var(--color-secondary)",
+                          border: "1px solid rgba(6 182 212 / 0.25)",
+                          borderRadius: "4px",
+                          padding: "0.15rem 0.5rem",
+                          fontWeight: 600,
+                        }}
+                      >
+                        {ai}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </section>
 
-        {/* ── Latest Guides ── */}
+        {/* ── Section 2: DX実録 ── */}
         <section className="section" style={{ background: "var(--color-surface)" }}>
           <div className="container">
             <div className="section-label">
               <div className="section-label-line" />
-              <span className="section-label-text">Step-by-Step Guides</span>
+              <span className="section-label-text">📋 Case Studies</span>
             </div>
-            <h2 className="section-title">ステップバイステップガイド</h2>
-
-            <div className="guide-grid">
-              {GUIDES.map((guide) => (
-                <Link key={guide.slug} href={`/guides/${guide.slug}`}>
-                  <div className="card" style={{ padding: "1.5rem", height: "100%" }}>
-                    <div className="guide-card-meta">
-                      <span>{guide.date}</span>
-                      <span>·</span>
-                      <span>⏱ {guide.readTime}</span>
-                    </div>
-                    <p className="guide-card-title">{guide.title}</p>
-                    <p className="guide-card-excerpt">{guide.excerpt}</p>
-                    <p
-                      style={{
-                        marginTop: "1rem",
-                        fontSize: "0.82rem",
-                        color: "var(--color-primary-light)",
-                        fontWeight: 600,
-                      }}
-                    >
-                      続きを読む →
-                    </p>
-                  </div>
-                </Link>
-              ))}
-            </div>
-
-            <div style={{ textAlign: "center", marginTop: "2.5rem" }}>
-              <Link href="/guides" className="btn btn-outline">
-                すべてのガイドを見る →
+            <div
+              style={{
+                display: "flex",
+                alignItems: "flex-end",
+                justifyContent: "space-between",
+                marginBottom: "2rem",
+                flexWrap: "wrap",
+                gap: "1rem",
+              }}
+            >
+              <h2 style={{ margin: 0 }}>業務改善の実録</h2>
+              <Link
+                href="/case-studies"
+                style={{
+                  fontSize: "0.85rem",
+                  color: "var(--color-primary-light)",
+                  fontWeight: 600,
+                }}
+              >
+                すべて見る →
               </Link>
+            </div>
+
+            {caseStudies.length > 0 ? (
+              <div className="guide-grid">
+                {caseStudies.map((article) => (
+                  <Link key={article.slug} href={`/case-studies/${article.slug}`}>
+                    <div className="card" style={{ padding: "1.5rem", height: "100%" }}>
+                      {article.frontmatter.scale && (
+                        <div
+                          style={{
+                            fontSize: "0.7rem",
+                            fontWeight: 700,
+                            color: "var(--color-accent)",
+                            marginBottom: "0.5rem",
+                          }}
+                        >
+                          📊 {article.frontmatter.scale}
+                        </div>
+                      )}
+                      <p className="guide-card-title">{article.frontmatter.title}</p>
+                      <p className="guide-card-excerpt">{article.frontmatter.excerpt}</p>
+                      {article.frontmatter.aiUsed && (
+                        <div
+                          style={{
+                            display: "flex",
+                            gap: "0.35rem",
+                            flexWrap: "wrap",
+                            marginTop: "0.75rem",
+                          }}
+                        >
+                          {article.frontmatter.aiUsed.map((ai) => (
+                            <span
+                              key={ai}
+                              style={{
+                                fontSize: "0.68rem",
+                                background: "rgba(6 182 212 / 0.1)",
+                                color: "var(--color-secondary)",
+                                border: "1px solid rgba(6 182 212 / 0.2)",
+                                borderRadius: "4px",
+                                padding: "0.12rem 0.45rem",
+                                fontWeight: 600,
+                              }}
+                            >
+                              {ai}
+                            </span>
+                          ))}
+                        </div>
+                      )}
+                      <p
+                        style={{
+                          marginTop: "1rem",
+                          fontSize: "0.82rem",
+                          color: "var(--color-primary-light)",
+                          fontWeight: 600,
+                        }}
+                      >
+                        実録を読む →
+                      </p>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            ) : (
+              <p style={{ color: "var(--color-text-muted)" }}>記事を準備中です。</p>
+            )}
+          </div>
+        </section>
+
+        {/* ── Section 3: ガジェット検証 ── */}
+        <section className="section">
+          <div className="container">
+            <div className="section-label">
+              <div className="section-label-line" />
+              <span className="section-label-text">🔧 Reviews</span>
+            </div>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "flex-end",
+                justifyContent: "space-between",
+                marginBottom: "2rem",
+                flexWrap: "wrap",
+                gap: "1rem",
+              }}
+            >
+              <h2 style={{ margin: 0 }}>厳選ガジェット検証</h2>
+              <Link
+                href="/reviews"
+                style={{
+                  fontSize: "0.85rem",
+                  color: "var(--color-primary-light)",
+                  fontWeight: 600,
+                }}
+              >
+                すべて見る →
+              </Link>
+            </div>
+
+            {reviews.length > 0 ? (
+              <div className="guide-grid">
+                {reviews.map((article) => (
+                  <Link key={article.slug} href={`/reviews/${article.slug}`}>
+                    <div className="card" style={{ padding: "1.5rem", height: "100%" }}>
+                      {typeof article.frontmatter.rating === "number" && (
+                        <div
+                          style={{
+                            display: "flex",
+                            gap: "2px",
+                            marginBottom: "0.5rem",
+                          }}
+                        >
+                          {Array.from({ length: 5 }).map((_, i) => (
+                            <span
+                              key={i}
+                              style={{
+                                color: "var(--color-accent)",
+                                opacity: i < article.frontmatter.rating! ? 1 : 0.2,
+                                fontSize: "0.85rem",
+                              }}
+                            >
+                              ★
+                            </span>
+                          ))}
+                        </div>
+                      )}
+                      <p className="guide-card-title">{article.frontmatter.title}</p>
+                      <p className="guide-card-excerpt">{article.frontmatter.excerpt}</p>
+                      <p
+                        style={{
+                          marginTop: "1rem",
+                          fontSize: "0.82rem",
+                          color: "var(--color-primary-light)",
+                          fontWeight: 600,
+                        }}
+                      >
+                        レビューを読む →
+                      </p>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            ) : (
+              <p style={{ color: "var(--color-text-muted)" }}>レビューを準備中です。</p>
+            )}
+          </div>
+        </section>
+
+        {/* ── About Sora ── */}
+        <section
+          className="section"
+          style={{ background: "var(--color-surface)", borderTop: "1px solid var(--color-border)" }}
+          id="about"
+        >
+          <div className="container">
+            <div style={{ maxWidth: "700px", margin: "0 auto", textAlign: "center" }}>
+              <div
+                style={{
+                  width: "72px",
+                  height: "72px",
+                  borderRadius: "50%",
+                  background: "linear-gradient(135deg, var(--color-primary), var(--color-secondary))",
+                  margin: "0 auto 1.5rem",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  fontSize: "2rem",
+                }}
+              >
+                ⚡
+              </div>
+              <h2 style={{ marginBottom: "1rem" }}>ソラとは？</h2>
+              <p style={{ color: "var(--color-text-muted)", lineHeight: 1.8, marginBottom: "1.5rem" }}>
+                現役の総務部長として延べ3,000人規模の組織運営を担いながら、AI・自動化に魅了されたオタクです。
+                「実務で動くものしか発信しない」をポリシーに、
+                業務改善の実録・自作ツール・ガジェット検証を届けています。
+                WordPressから<strong>Next.js</strong>へ移行してサイトを爆速化した実績もこのサイトで証明中。
+              </p>
+              <div
+                style={{
+                  display: "flex",
+                  gap: "0.75rem",
+                  justifyContent: "center",
+                  flexWrap: "wrap",
+                }}
+              >
+                {["現役総務部長", "AI・自動化オタク", "Next.js移行済み", "GAS × Python"].map((tag) => (
+                  <span
+                    key={tag}
+                    style={{
+                      fontSize: "0.78rem",
+                      background: "var(--color-surface-2)",
+                      color: "var(--color-primary-light)",
+                      border: "1px solid rgba(99 102 241 / 0.25)",
+                      borderRadius: "999px",
+                      padding: "0.3rem 0.85rem",
+                      fontWeight: 600,
+                    }}
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
             </div>
           </div>
         </section>

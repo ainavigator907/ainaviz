@@ -4,16 +4,25 @@ import matter from "gray-matter";
 
 const CONTENT_DIR = path.join(process.cwd(), "content");
 
+export type ContentFolder = "guides" | "tools" | "case-studies" | "reviews";
+
 export interface ArticleFrontmatter {
   title: string;
   date: string;
   excerpt: string;
-  category: "guide" | "tool" | "news";
+  category: string;
   tags: string[];
   coverImage?: string;
   videoUrl?: string;
   author?: string;
   affiliate?: boolean;
+  // case-studies specific
+  scale?: string;
+  aiUsed?: string[];
+  readTime?: string;
+  // reviews specific
+  rating?: number;
+  products?: string[];
 }
 
 export interface Article {
@@ -22,8 +31,8 @@ export interface Article {
   content: string;
 }
 
-/** Get all articles in a given sub-folder (e.g. "guides" | "tools") */
-export function getAllArticles(folder: "guides" | "tools"): Article[] {
+/** Get all articles in a given sub-folder */
+export function getAllArticles(folder: ContentFolder): Article[] {
   const dir = path.join(CONTENT_DIR, folder);
   if (!fs.existsSync(dir)) return [];
 
@@ -53,7 +62,7 @@ export function getAllArticles(folder: "guides" | "tools"): Article[] {
 
 /** Get a single article by slug */
 export function getArticleBySlug(
-  folder: "guides" | "tools",
+  folder: ContentFolder,
   slug: string
 ): Article | null {
   const dir = path.join(CONTENT_DIR, folder);
