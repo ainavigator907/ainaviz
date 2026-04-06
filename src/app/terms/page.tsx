@@ -3,8 +3,8 @@ import Footer from "@/components/Footer";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "免責事項 | AI Navigator",
-  description: "AI Navigatorの免責事項および利用上の注意点について。",
+  title: "免責事項 | AI Navigator -ソラの秘密基地-",
+  description: "AI Navigator -ソラの秘密基地- の免責事項および利用上の注意点について。",
 };
 
 export default function TermsPage() {
@@ -18,7 +18,7 @@ export default function TermsPage() {
           </h1>
           <div className="card" style={{ padding: "clamp(1.5rem, 5vw, 3rem)", lineHeight: "1.8" }}>
             <p>
-              AI Navigator（以下、「当サイト」）に掲載する情報およびその利用に関して、ユーザー各位は以下の免責事項を必ずご一読いただき、ご承諾の上で当サイトをご利用ください。
+              AI Navigator -ソラの秘密基地-（以下、「当サイト」）に掲載する情報およびその利用に関して、ユーザー各位は以下の免責事項を必ずご一読いただき、ご承諾の上で当サイトをご利用ください。
             </p>
 
             <h2 style={{ marginTop: "2.5rem", marginBottom: "1rem", fontSize: "1.3rem", borderBottom: "2px solid var(--color-border)", paddingBottom: "0.5rem" }}>
@@ -57,7 +57,7 @@ export default function TermsPage() {
 
             <div style={{ marginTop: "4rem", paddingTop: "1rem", borderTop: "1px solid var(--color-border)", fontSize: "0.9rem", color: "var(--color-text-muted)", textAlign: "right" }}>
               <p>制定日: 2026年3月25日</p>
-              <p>AI Navigator 運営者</p>
+              <p>AI Navigator ソラ</p>
             </div>
           </div>
         </div>

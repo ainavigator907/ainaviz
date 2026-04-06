@@ -93,7 +93,7 @@ export default function GuidesPage() {
               AIツール<span className="gradient-text">使い方ガイド</span>
             </h1>
             <p style={{ color: "var(--color-text-muted)", maxWidth: "560px" }}>
-              海外の最新AIツールを日本語でやさしく解説。コードスニペット・動画付きで実践的に学べます。
+              最新AIツールを日本語でやさしく解説。コードスニペット付きで実践的に学べます。
             </p>
           </div>
 

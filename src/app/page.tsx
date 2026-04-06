@@ -53,7 +53,8 @@ export default function HomePage() {
             </div>
             <h1 className="hero-title">
               延べ<span className="gradient-text">3,000人規模</span>の<br />
-              運用実績を持つ総務部長が送る、<br />
+              運用実績を持つ<br />
+			  総務部長が送る<br />
               <span className="gradient-text">AI×実務</span>の実験場
             </h1>
             <p className="hero-subtitle">

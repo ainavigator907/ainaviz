@@ -3,8 +3,8 @@ import Footer from "@/components/Footer";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "プライバシーポリシー | AI Navigator",
-  description: "AI Navigatorのプライバシーポリシー（個人情報保護方針）について。",
+  title: "プライバシーポリシー | AI Navigator -ソラの秘密基地-",
+  description: "AI Navigator -ソラの秘密基地- のプライバシーポリシー（個人情報保護方針）について。",
 };
 
 export default function PrivacyPolicyPage() {
@@ -18,7 +18,7 @@ export default function PrivacyPolicyPage() {
           </h1>
           <div className="card" style={{ padding: "clamp(1.5rem, 5vw, 3rem)", lineHeight: "1.8" }}>
             <p>
-              AI Navigator（以下、「当サイト」とします）は、本ウェブサイト上で提供するサービスにおける、ユーザーの個人情報の取扱いについて、以下のとおりプライバシーポリシー（以下、「本ポリシー」とします）を定めます。
+              AI Navigator -ソラの秘密基地-（以下、「当サイト」とします）は、本ウェブサイト上で提供するサービスにおける、ユーザーの個人情報の取扱いについて、以下のとおりプライバシーポリシー（以下、「本ポリシー」とします）を定めます。
             </p>
 
             <h2 style={{ marginTop: "2.5rem", marginBottom: "1rem", fontSize: "1.3rem", borderBottom: "2px solid var(--color-border)", paddingBottom: "0.5rem" }}>
@@ -71,7 +71,7 @@ export default function PrivacyPolicyPage() {
 
             <div style={{ marginTop: "4rem", paddingTop: "1rem", borderTop: "1px solid var(--color-border)", fontSize: "0.9rem", color: "var(--color-text-muted)", textAlign: "right" }}>
               <p>制定日: 2026年3月25日</p>
-              <p>AI Navigator 運営者</p>
+              <p>AI Navigator ソラ</p>
             </div>
           </div>
         </div>
