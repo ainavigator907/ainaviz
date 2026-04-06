@@ -16,13 +16,13 @@ const UPCOMING_TOOLS = [
       "Whisper で音声を文字起こしし、Claude が要約・アクションアイテムを自動抽出。5分の会議録音を30秒で議事録化。",
     aiUsed: ["Whisper", "Claude"],
     background:
-      "社内会議の議事録作成に毎週数時間を費やしていた実体験から着想。延べ3,000人規模の組織では会議の数も膨大で、自動化の需要が高かった。",
+      "社内会議の議事録作成に毎週数時間を費やしていた実体験から着想。",
   },
   {
     id: "approval-doc-gen",
     name: "稟議書ジェネレーター",
     description:
-      "製品URLと用途を入力するだけで、上長が承認しやすいスペック比較表・費用対効果付きの稟議書を自動生成。",
+      "製品URLと用途を入力するだけで、上司が承認しやすいスペック比較表・費用対効果付きの稟議書を自動生成。",
     aiUsed: ["Claude", "Next.js"],
     background:
       "「なぜこれが必要か」を論理立てて書く稟議書は時間がかかる。フォーマット化とAI生成で工数を90%削減することが目標。",
@@ -63,7 +63,7 @@ export default function LabPage() {
               <span className="gradient-text">ソラの実験場</span>
             </h1>
             <p style={{ color: "var(--color-text-muted)", fontSize: "1.1rem", maxWidth: "600px", lineHeight: 1.7 }}>
-              実務で「あったら便利」と感じた瞬間に作り始めるツール置き場。
+              実務で「あったら便利」を形にしたツール置き場。
               開発中のものも含め、背景とコンセプトを公開しています。
             </p>
           </div>
@@ -83,10 +83,9 @@ export default function LabPage() {
               }}
             >
               <div style={{ fontSize: "3rem", marginBottom: "1rem" }}>🚧</div>
-              <h2 style={{ marginBottom: "0.75rem", fontSize: "1.5rem" }}>現在、鋭意開発中です</h2>
+              <h2 style={{ marginBottom: "0.75rem", fontSize: "1.5rem" }}>現在、開発中です</h2>
               <p style={{ color: "var(--color-text-muted)", lineHeight: 1.7, maxWidth: "500px", margin: "0 auto 1.5rem" }}>
-                各ツールは実務で「本当に必要」と確認できたものだけを開発しています。
-                公開が近いものから順次リリース予定です。
+                使えるもの(公開できる段階になったもの)から順次リリース予定です。
               </p>
               <Link href="/case-studies" className="btn btn-outline">
                 開発背景の実録記事を読む →
