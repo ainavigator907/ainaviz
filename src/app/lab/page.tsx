@@ -19,15 +19,6 @@ const UPCOMING_TOOLS = [
       "社内会議の議事録作成に毎週数時間を費やしていた実体験から着想。延べ3,000人規模の組織では会議の数も膨大で、自動化の需要が高かった。",
   },
   {
-    id: "gas-email-bot",
-    name: "GASメール仕分けBot",
-    description:
-      "Gmailの受信メールをGemini APIで自動分類。重要度・カテゴリを付与し、定型返信テンプレートまで生成する。",
-    aiUsed: ["Gemini", "GAS", "Gmail API"],
-    background:
-      "総務部には毎日200通超のメールが届く。AI分類で「要対応」を即座に可視化し、返信漏れゼロを目指した。",
-  },
-  {
     id: "approval-doc-gen",
     name: "稟議書ジェネレーター",
     description:
@@ -53,15 +44,6 @@ const UPCOMING_TOOLS = [
     aiUsed: ["Claude", "Notion API"],
     background:
       "属人化した業務ノウハウを誰でもアクセスできる形に変換したい。口頭説明をAIがマニュアル化するフローを構築中。",
-  },
-  {
-    id: "dx-quiz",
-    name: "DXリテラシー診断ゲーム",
-    description:
-      "AIと業務効率化に関するクイズ形式の診断ゲーム。スコアに応じて「あなたに合ったAIツール」をレコメンド。",
-    aiUsed: ["Next.js", "Claude"],
-    background:
-      "「AIって何から始めればいいの？」という社員の声から着想。ゲーミフィケーションでDX学習のハードルを下げる。",
   },
 ];
 

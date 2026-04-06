@@ -21,10 +21,10 @@ const LAB_TOOLS_PREVIEW = [
     status: "coming" as const,
   },
   {
-    id: "gas-email-bot",
-    name: "GASメール仕分けBot",
-    description: "受信メールをAIが自動分類・返信テンプレートを生成。定型返信ゼロへ。",
-    aiUsed: ["Gemini", "GAS"],
+    id: "ai-cost-monitor",
+    name: "AI利用コストモニター",
+    description: "Claude / GPT / Gemini のAPI費用をリアルタイム集計。コスト爆増を自動アラート。",
+    aiUsed: ["Claude API", "OpenAI API"],
     status: "coming" as const,
   },
   {
