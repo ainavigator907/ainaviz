@@ -5,9 +5,9 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "使い方ガイド",
+  title: "海外AI最新情報 & 活用ガイド",
   description:
-    "ChatGPT・Cursor・Midjourneyなど海外AIツールを日本語でやさしく解説。初心者からビジネスプロまで役立つステップバイステップガイド。",
+    "海外メディア発の最新AIニュースと活用術を日本語でお届け。ChatGPT・Claude・Cursorなど注目ツールの使い方もわかりやすく解説。",
 };
 
 // Fallback seed guides (shown when no MDX files exist yet)
@@ -87,13 +87,13 @@ export default function GuidesPage() {
           <div style={{ marginBottom: "3rem" }}>
             <div className="section-label" style={{ marginBottom: "0.75rem" }}>
               <div className="section-label-line" />
-              <span className="section-label-text">Step-by-Step Guides</span>
+              <span className="section-label-text">Global AI News & Guides</span>
             </div>
             <h1 style={{ marginBottom: "0.75rem" }}>
-              AIツール<span className="gradient-text">使い方ガイド</span>
+              海外AI最新情報<span className="gradient-text"> & 活用ガイド</span>
             </h1>
             <p style={{ color: "var(--color-text-muted)", maxWidth: "560px" }}>
-              最新AIツールを日本語でやさしく解説。コードスニペット付きで実践的に学べます。
+              海外メディア発の最新AIニュースと活用術を日本語でお届け。注目ツールの使い方もわかりやすく解説します。
             </p>
           </div>
 
