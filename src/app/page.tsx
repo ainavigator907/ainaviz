@@ -14,18 +14,20 @@ export const metadata: Metadata = {
 // ─── Lab Tools Preview (static, /lab が準備中なのでデモデータ) ──────────────
 const LAB_TOOLS_PREVIEW = [
   {
+    id: "ai-tool-advisor",
+    name: "AIツール選定アドバイザー",
+    description: "4つの質問に答えるだけで、用途・予算・技術レベルに合ったAIツールを診断。",
+    aiUsed: ["診断ロジック", "Next.js"],
+    status: "live" as const,
+    href: "/lab/ai-tool-advisor",
+  },
+  {
     id: "meeting-minutes",
     name: "議事録AI自動生成",
     description: "Whisper + Claude で音声→議事録を全自動化。5分の録音を30秒で要約。",
     aiUsed: ["Whisper", "Claude"],
     status: "coming" as const,
-  },
-  {
-    id: "ai-cost-monitor",
-    name: "AI利用コストモニター",
-    description: "Claude / GPT / Gemini のAPI費用をリアルタイム集計。コスト爆増を自動アラート。",
-    aiUsed: ["Claude API", "OpenAI API"],
-    status: "coming" as const,
+    href: "/lab",
   },
   {
     id: "approval-doc-gen",
@@ -33,6 +35,7 @@ const LAB_TOOLS_PREVIEW = [
     description: "製品仕様を入力するだけで、稟議が通る比較表付き文書を自動生成。",
     aiUsed: ["Claude", "Next.js"],
     status: "coming" as const,
+    href: "/lab",
   },
 ];
 
@@ -150,62 +153,71 @@ export default function HomePage() {
 
             <div className="tool-grid">
               {LAB_TOOLS_PREVIEW.map((tool) => (
-                <div
-                  key={tool.id}
-                  className="card"
-                  style={{ padding: "1.5rem", position: "relative" }}
-                >
-                  {/* Coming soon overlay */}
+                <Link key={tool.id} href={tool.href} style={{ display: "block" }}>
                   <div
-                    style={{
-                      position: "absolute",
-                      top: "1rem",
-                      right: "1rem",
-                      fontSize: "0.68rem",
-                      fontWeight: 700,
-                      textTransform: "uppercase",
-                      letterSpacing: "0.06em",
-                      background: "rgba(99 102 241 / 0.15)",
-                      color: "var(--color-primary-light)",
-                      border: "1px solid rgba(99 102 241 / 0.3)",
-                      borderRadius: "999px",
-                      padding: "0.2rem 0.6rem",
-                    }}
+                    className="card"
+                    style={{ padding: "1.5rem", position: "relative", height: "100%" }}
                   >
-                    準備中
+                    <div
+                      style={{
+                        position: "absolute",
+                        top: "1rem",
+                        right: "1rem",
+                        fontSize: "0.68rem",
+                        fontWeight: 700,
+                        textTransform: "uppercase",
+                        letterSpacing: "0.06em",
+                        background:
+                          tool.status === "live"
+                            ? "rgba(16 185 129 / 0.15)"
+                            : "rgba(99 102 241 / 0.15)",
+                        color:
+                          tool.status === "live"
+                            ? "var(--color-success)"
+                            : "var(--color-primary-light)",
+                        border:
+                          tool.status === "live"
+                            ? "1px solid rgba(16 185 129 / 0.3)"
+                            : "1px solid rgba(99 102 241 / 0.3)",
+                        borderRadius: "999px",
+                        padding: "0.2rem 0.6rem",
+                      }}
+                    >
+                      {tool.status === "live" ? "公開中" : "準備中"}
+                    </div>
+                    <h3 style={{ fontSize: "1.05rem", marginBottom: "0.5rem", paddingRight: "5rem" }}>
+                      {tool.name}
+                    </h3>
+                    <p
+                      style={{
+                        fontSize: "0.875rem",
+                        color: "var(--color-text-muted)",
+                        lineHeight: 1.6,
+                        marginBottom: "1rem",
+                      }}
+                    >
+                      {tool.description}
+                    </p>
+                    <div style={{ display: "flex", gap: "0.4rem", flexWrap: "wrap" }}>
+                      {tool.aiUsed.map((ai) => (
+                        <span
+                          key={ai}
+                          style={{
+                            fontSize: "0.7rem",
+                            background: "rgba(6 182 212 / 0.1)",
+                            color: "var(--color-secondary)",
+                            border: "1px solid rgba(6 182 212 / 0.25)",
+                            borderRadius: "4px",
+                            padding: "0.15rem 0.5rem",
+                            fontWeight: 600,
+                          }}
+                        >
+                          {ai}
+                        </span>
+                      ))}
+                    </div>
                   </div>
-                  <h3 style={{ fontSize: "1.05rem", marginBottom: "0.5rem", paddingRight: "5rem" }}>
-                    {tool.name}
-                  </h3>
-                  <p
-                    style={{
-                      fontSize: "0.875rem",
-                      color: "var(--color-text-muted)",
-                      lineHeight: 1.6,
-                      marginBottom: "1rem",
-                    }}
-                  >
-                    {tool.description}
-                  </p>
-                  <div style={{ display: "flex", gap: "0.4rem", flexWrap: "wrap" }}>
-                    {tool.aiUsed.map((ai) => (
-                      <span
-                        key={ai}
-                        style={{
-                          fontSize: "0.7rem",
-                          background: "rgba(6 182 212 / 0.1)",
-                          color: "var(--color-secondary)",
-                          border: "1px solid rgba(6 182 212 / 0.25)",
-                          borderRadius: "4px",
-                          padding: "0.15rem 0.5rem",
-                          fontWeight: 600,
-                        }}
-                      >
-                        {ai}
-                      </span>
-                    ))}
-                  </div>
-                </div>
+                </Link>
               ))}
             </div>
           </div>

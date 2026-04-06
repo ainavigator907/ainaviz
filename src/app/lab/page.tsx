@@ -8,6 +8,17 @@ export const metadata: Metadata = {
   description: "ソラが開発中の自作ツール・ゲームの展示場。AI×実務で生まれたプロダクトを公開予定。",
 };
 
+const LIVE_TOOLS = [
+  {
+    id: "ai-tool-advisor",
+    name: "AIツール選定アドバイザー",
+    description:
+      "4つの質問に答えるだけで、用途・予算・技術レベルにあったAIツールを診断。迷ったらまずここから。",
+    aiUsed: ["診断ロジック", "Next.js"],
+    href: "/lab/ai-tool-advisor",
+  },
+];
+
 const UPCOMING_TOOLS = [
   {
     id: "meeting-minutes",
@@ -69,22 +80,89 @@ export default function LabPage() {
           </div>
         </section>
 
-        {/* ── 準備中バナー ── */}
-        <section style={{ padding: "3rem 0" }}>
+        {/* ── 公開中ツール ── */}
+        <section style={{ padding: "3rem 0 0" }}>
           <div className="container">
+            <div className="section-label" style={{ marginBottom: "1.25rem" }}>
+              <div className="section-label-line" />
+              <span className="section-label-text">✅ 公開中</span>
+            </div>
+            <div className="tool-grid" style={{ marginBottom: "4rem" }}>
+              {LIVE_TOOLS.map((tool) => (
+                <Link key={tool.id} href={tool.href} style={{ display: "block" }}>
+                  <div
+                    className="card"
+                    style={{ padding: "1.5rem", display: "flex", flexDirection: "column", gap: "0.85rem", height: "100%" }}
+                  >
+                    <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: "0.5rem" }}>
+                      <h3 style={{ fontSize: "1rem", lineHeight: 1.4 }}>{tool.name}</h3>
+                      <span
+                        style={{
+                          flexShrink: 0,
+                          fontSize: "0.68rem",
+                          fontWeight: 700,
+                          textTransform: "uppercase",
+                          letterSpacing: "0.06em",
+                          background: "rgba(16 185 129 / 0.15)",
+                          color: "var(--color-success)",
+                          border: "1px solid rgba(16 185 129 / 0.3)",
+                          borderRadius: "999px",
+                          padding: "0.2rem 0.6rem",
+                          whiteSpace: "nowrap",
+                        }}
+                      >
+                        公開中
+                      </span>
+                    </div>
+                    <p style={{ fontSize: "0.875rem", color: "var(--color-text-muted)", lineHeight: 1.6 }}>
+                      {tool.description}
+                    </p>
+                    <div style={{ display: "flex", gap: "0.35rem", flexWrap: "wrap", marginTop: "auto" }}>
+                      {tool.aiUsed.map((ai) => (
+                        <span
+                          key={ai}
+                          style={{
+                            fontSize: "0.68rem",
+                            background: "rgba(6 182 212 / 0.1)",
+                            color: "var(--color-secondary)",
+                            border: "1px solid rgba(6 182 212 / 0.25)",
+                            borderRadius: "4px",
+                            padding: "0.12rem 0.45rem",
+                            fontWeight: 600,
+                          }}
+                        >
+                          {ai}
+                        </span>
+                      ))}
+                    </div>
+                    <span style={{ fontSize: "0.82rem", color: "var(--color-primary-light)", fontWeight: 600 }}>
+                      ツールを使う →
+                    </span>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ── 準備中バナー ── */}
+        <section style={{ padding: "0 0 3rem" }}>
+          <div className="container">
+            <div className="section-label" style={{ marginBottom: "1.25rem" }}>
+              <div className="section-label-line" />
+              <span className="section-label-text">🚧 開発中</span>
+            </div>
             <div
               style={{
                 background: "linear-gradient(135deg, rgba(99 102 241 / 0.08), rgba(6 182 212 / 0.06))",
                 border: "1px solid rgba(99 102 241 / 0.3)",
                 borderRadius: "var(--radius-lg)",
-                padding: "2.5rem",
+                padding: "2rem",
                 textAlign: "center",
-                marginBottom: "3rem",
+                marginBottom: "2rem",
               }}
             >
-              <div style={{ fontSize: "3rem", marginBottom: "1rem" }}>🚧</div>
-              <h2 style={{ marginBottom: "0.75rem", fontSize: "1.5rem" }}>現在、開発中です</h2>
-              <p style={{ color: "var(--color-text-muted)", lineHeight: 1.7, maxWidth: "500px", margin: "0 auto 1.5rem" }}>
+              <p style={{ color: "var(--color-text-muted)", lineHeight: 1.7, maxWidth: "500px", margin: "0 auto 1.25rem", fontSize: "0.9rem" }}>
                 使えるもの(公開できる段階になったもの)から順次リリース予定です。
               </p>
               <Link href="/case-studies" className="btn btn-outline">
