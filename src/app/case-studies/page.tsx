@@ -7,7 +7,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "DX実録",
   description:
-    "現役総務部長・ソラが実践した業務改善の実録。2,500名規模の環境での具体的なDX事例を公開。",
+    "現役総務部長・ソラが実践した業務改善の実録。現場での具体的なDX事例を公開。",
 };
 
 export default function CaseStudiesPage() {

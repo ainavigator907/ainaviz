@@ -1,26 +1,25 @@
 ---
 title: "Python×GASで事務作業を全自動化——ルーティン業務から完全解放された実録"
-date: "2026-03-10"
-excerpt: "勤怠集計・経費申請確認・備品発注アラートなど、総務部の反復作業をPython + Google Apps Scriptで全自動化。年間240時間を取り戻した仕組みを全公開。"
+date: "2026-04-06"
+excerpt: "勤怠集計・経費申請確認・備品発注アラートなど、総務部の反復作業をPython + Google Apps Scriptで全自動化。年間数百時間を取り戻した仕組みを全公開。"
 category: "case-study"
-tags: ["Python", "GAS", "自動化", "バックオフィス"]
+tags: ["Python", "GAS", "自動化", "バックオフィス", "Claude Code"]
 author: "ソラ"
-scale: "2,500名規模の組織 / 総務部4名体制"
-aiUsed: ["Claude Code", "Gemini API", "Python", "GAS"]
+scale: "中規模〜大規模組織のバックオフィス部門"
+aiUsed: ["Claude Code", "Antigravity", "Gemini API", "Python", "GAS"]
 readTime: "13分"
 ---
 
 ## 「ルーティン業務地獄」からの脱出
 
-総務部4名で2,500名の組織を支える環境では、
-毎月同じ作業を繰り返す「ルーティン業務」が膨大です。
+限られた人数で多くの社員を支える総務の現場では、毎月同じ作業を繰り返す「ルーティン業務」が膨大です。
 
-- 月末：勤怠データの集計と確認
-- 月初：経費精算の確認とリマインド送信
-- 週次：備品在庫のチェックと発注判断
-- 随時：各種申請フローの進捗確認
+- **月末**：勤怠データの集計と確認
+- **月初**：経費精算の確認とリマインド送信
+- **週次**：備品在庫のチェックと発注判断
+- **随時**：各種申請フローの進捗確認
 
-これらをすべて**「人間が毎回やる」前提で設計されていた**ことが問題でした。
+これらをすべて**「人間が毎回やる」前提で設計されていた**ことが、本来取り組むべき企画や改善業務を圧迫する最大の原因でした。
 
 ## 自動化の全体マップ
 
@@ -44,56 +43,55 @@ Slack通知 / Gmailによる自動送信 / スプレッドシート更新
 
 ## 自動化①：勤怠集計レポート
 
-**所要時間の変化：月4時間 → 0分（完全自動）**
+**所要時間の変化：月数時間 → 0分（完全自動）**
 
 月末になると自動でトリガーが走り、以下を実行します。
 
 1. 勤怠管理スプレッドシートからデータ取得（GAS）
 2. Pythonで残業時間・有休残日数・月次集計を計算
-3. 異常値（残業80時間超・有休消化率低すぎ等）を検出
+3. 異常値（残業時間の超過・有休消化率の停滞等）を検出
 4. 部署別レポートをPDFで自動生成
 5. 各部署長にメールで自動送信
 
 ```python
 # 勤怠異常値検出の一部（Claude Codeが生成）
 def detect_overtime_anomaly(records: list[dict]) -> list[dict]:
-    alerts = []
-    for record in records:
-        overtime_hours = record.get("overtime_hours", 0)
-        if overtime_hours >= 80:
-            alerts.append({
-                "employee_id": record["id"],
-                "name": record["name"],
-                "overtime": overtime_hours,
-                "level": "critical" if overtime_hours >= 100 else "warning"
-            })
-    return alerts
+   alerts = []
+   for record in records:
+       overtime_hours = record.get("overtime_hours", 0)
+       if overtime_hours >= 80:
+           alerts.append({
+               "employee_id": record["id"],
+               "name": record["name"],
+               "overtime": overtime_hours,
+               "level": "critical" if overtime_hours >= 100 else "warning"
+           })
+   return alerts
 ```
 
 ## 自動化②：経費精算リマインド
 
-**所要時間の変化：週2時間 → 0分**
+**所要時間の変化：週数時間 → 0分**
 
-Googleフォームで受け付けた経費精算申請を監視し、
-承認が3営業日以上滞っている場合は承認者にSlack通知を自動送信。
+Googleフォームで受け付けた経費精算申請を監視し、承認が一定期間滞っている場合は承認者にSlack通知を自動送信します。
 
 ```javascript
-// GASのトリガー関数（毎朝9時に実行）
+// GASのトリガー関数（毎朝実行）
 function checkPendingExpenses() {
-  const sheet = SpreadsheetApp.openById(SHEET_ID).getActiveSheet();
-  const today = new Date();
-  const data = sheet.getDataRange().getValues();
+ const sheet = SpreadsheetApp.openById(SHEET_ID).getActiveSheet();
+ const today = new Date();
+ const data = sheet.getDataRange().getValues();
 
-  data.forEach((row, index) => {
-    if (index === 0) return; // ヘッダースキップ
-    const submittedDate = new Date(row[1]);
-    const status = row[4];
-    const daysPending = Math.floor((today - submittedDate) / 86400000);
+ data.forEach((row, index) => {
+   if (index === 0) return; // ヘッダースキップ
+   const submittedDate = new Date(row[1]);
+   const status = row[4];
+   const daysPending = Math.floor((today - submittedDate) / 86400000);
 
-    if (status === "pending" && daysPending >= 3) {
-      sendSlackReminder(row[3], row[0], daysPending); // 承認者ID・申請者名・日数
-    }
-  });
+   if (status === "pending" && daysPending >= 3) {
+     sendSlackReminder(row[3], row[0], daysPending); // 承認者ID・申請者名・日数
+   }
+ });
 }
 ```
 
@@ -101,11 +99,7 @@ function checkPendingExpenses() {
 
 **所要時間の変化：週1時間 → 0分**
 
-在庫管理スプレッドシートの数量が閾値を下回ると、
-Amazonリンク付きで発注担当者にSlack通知が自動送信されます。
-
-Gemini APIが各備品の「消費ペース」を学習し、
-**在庫がゼロになる日付を予測**して事前アラートを送る機能も追加しました。
+在庫管理スプレッドシートの数量が閾値を下回ると、Amazonリンク付きで発注担当者にSlack通知が自動送信されます。Gemini APIが各備品の「消費ペース」を学習し、在庫がゼロになる日付を予測して事前アラートを送る機能も運用しています。
 
 ## 全体の成果
 
@@ -117,25 +111,28 @@ Gemini APIが各備品の「消費ペース」を学習し、
 | 各種申請進捗確認 | 6時間 | 1時間 |
 | **月間合計** | **22時間** | **1.5時間** |
 
-**年間換算で約240時間（月20時間）の削減**を実現。
-4名体制の総務部に、実質1名分の余力が生まれました。
+年間換算で約240時間の削減を実現。少人数の総務チームに、実質1名分近い「思考のための余力」が生まれました。
 
-## 自動化のコツ：「失敗が怖い業務」から始めない
+---
 
-自動化の順番は重要です。
-最初から「失敗したら困る業務」を自動化すると、ミスが怖くてやめてしまいます。
+## 開発の舞台裏：泥臭いGASから「Claude Code」への進化
 
-おすすめの順番：
-1. **通知・リマインド系**（送信失敗してもすぐわかる・再送できる）
-2. **集計・レポート系**（数値ミスは人間が確認できる）
-3. **外部連携・発注系**（実害が出る可能性があるので最後）
+ここからは少し裏話になりますが、このシステムは一朝一夕でできたものではありません。
+
+最初はプログラミングの知識もほぼゼロの状態から、ChatGPTに1行ずつコードを聞きながら泥臭くGASを組み上げるところからスタートしました。WordPressのPHPコードの修正も同様で、「このエラーは何？」「直したら別のエラーが出た」を何十回と繰り返すのが日常でした。1つの機能を追加するのに、AIとのやり取りが50回を超えることもざらでした。
+
+2025年5月ごろからはWebアプリ開発にも着手しましたが、ここでも同じ泥臭さ。動いたと思ったら別の場所が壊れる、を繰り返しながらゼロから組み上げていきました。
+
+転換点は**2025年10月ごろのCodex導入**です。コード全体の文脈を踏まえた提案が増え、「1行ずつ聞く」スタイルから少し前進できました。それでも複雑な処理では手戻りが多く、完成までの道のりは決して短くありませんでした。
+
+そして**2025年末のAntigravity**、さらに**最近のClaude Code**の活用で、状況が一変しました。
+
+これまで継ぎはぎで作ってきたGAS主体のシステム、WordPressサイト、アプリ——これらすべてをClaude Codeで一気にアップデート。プロジェクト全体の構造を把握した上でコードの修正・改善を提案してくれるため、かつての「ChatGPTとの1問1答」とは比較にならないスピードで、品質と堅牢性を引き上げることができました。
+
+**これから始める人には、同じ遠回りをしてほしくありません。** 最初からClaude CodeやAntigravityを使えば、あの泥臭い何十回ものやり取りを経ずに、同じゴールに辿り着けます。
 
 ## まとめ
 
 「プログラミングができない」は、もはや自動化の壁ではありません。
-Claude Codeに「〇〇という業務を自動化するコードを書いて」と指示すれば、
-動くコードが生成されます。
-
-重要なのは**業務の流れを言語化できること**です。
-「何を・いつ・どうやって・誰に渡すか」を明確にできれば、
-AIがコードに翻訳してくれます。
+重要なのは、現場の痛みを理解し、業務の流れを言語化できることです。
+「何を・いつ・どうやって・誰に渡すか」を明確に定義できれば、あとはAIがあなたの右腕となって、複雑なコードへと翻訳してくれます。まずは明日、自分が手作業で行う予定の「小さな通知」から自動化を始めてみませんか？
