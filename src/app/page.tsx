@@ -8,7 +8,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "ソラの秘密基地 | AI×実務の実験場",
   description:
-    "延べ3,000人規模の運用実績を持つ現役総務部長・ソラが送る、AI×実務の実験場。DX改善実録、自作ツール、ガジェット検証を発信。",
+    "延べ3,000人規模のアプリ・サイト運用実績を持つ現役総務部長・ソラが送る、AI×実務の実験場。DX改善実録、自作ツール、ガジェット検証を発信。",
 };
 
 // ─── Lab Tools Preview (static, /lab が準備中なのでデモデータ) ──────────────
@@ -423,7 +423,7 @@ export default function HomePage() {
               </div>
               <h2 style={{ marginBottom: "1rem" }}>ソラとは？</h2>
               <p style={{ color: "var(--color-text-muted)", lineHeight: 1.8, marginBottom: "1.5rem" }}>
-                現役の総務部長として延べ3,000人規模の組織運営を担いながら、AI・自動化に魅了されたオタクです。
+                現役の総務部長として延べ3,000人規模のアプリ・サイト運営を担いながら、AI・自動化に魅了されたオタクです。
                 「実務で動くものしか発信しない」をポリシーに、
                 業務改善の実録・自作ツール・ガジェット検証を届けています。
                 WordPressから<strong>Next.js</strong>へ移行してサイトを爆速化した実績もこのサイトで証明中。
