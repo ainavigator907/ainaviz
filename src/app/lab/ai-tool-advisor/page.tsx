@@ -28,7 +28,8 @@ interface Tool {
   affiliateLabel: string;
   tags: string[];
   isAffiliate?: boolean;
-  isPaid?: boolean;
+  isPaid?: boolean;   // 無料プランなし・有料のみ
+  isFree?: boolean;   // 無料プランあり（または完全無料）
 }
 
 // ─── Tool Database ───────────────────────────────────────────────────────────
@@ -43,6 +44,7 @@ const TOOLS: Record<string, Tool> = {
     affiliateUrl: "https://claude.ai",
     affiliateLabel: "Claudeを無料で試す →",
     tags: ["文書作成", "日本語対応", "無料"],
+    isFree: true,
   },
   "claude-pro": {
     id: "claude-pro",
@@ -67,6 +69,7 @@ const TOOLS: Record<string, Tool> = {
     affiliateUrl: "https://chat.openai.com",
     affiliateLabel: "ChatGPTを試す →",
     tags: ["汎用", "画像理解", "無料"],
+    isFree: true,
   },
   "chatgpt-plus": {
     id: "chatgpt-plus",
@@ -105,6 +108,7 @@ const TOOLS: Record<string, Tool> = {
     affiliateLabel: "Cursorを試す →",
     tags: ["コーディング", "エディタ"],
     isAffiliate: true,
+    isFree: true,
   },
   "perplexity": {
     id: "perplexity",
@@ -116,6 +120,7 @@ const TOOLS: Record<string, Tool> = {
     affiliateUrl: "https://perplexity.ai",
     affiliateLabel: "Perplexityを試す →",
     tags: ["リサーチ", "情報収集", "検索"],
+    isFree: true,
   },
   "notion-ai": {
     id: "notion-ai",
@@ -154,6 +159,43 @@ const TOOLS: Record<string, Tool> = {
     affiliateLabel: "Makeを試す →",
     tags: ["自動化", "ノーコード", "ワークフロー"],
     isAffiliate: true,
+    isFree: true,
+  },
+  "canva": {
+    id: "canva",
+    name: "Canva",
+    description:
+      "ノーコードのデザインツール。AI画像生成（Magic Studio）・背景削除・テキスト→画像変換を無料で使える。SNS素材・プレゼン・バナーを数分で作成。",
+    price: "無料（Pro版：月額約1,500円）",
+    highlight: "デザイン知識ゼロでも本格的な画像を作れる",
+    affiliateUrl: "https://www.canva.com",
+    affiliateLabel: "Canvaを無料で試す →",
+    tags: ["画像生成", "デザイン", "ノーコード"],
+    isAffiliate: true,
+    isFree: true,
+  },
+  "nanobanana": {
+    id: "nanobanana",
+    name: "ナノバナナ",
+    description:
+      "日本製のAIバナー・画像生成ツール。テキスト入力だけでSNS用バナーや広告素材を自動生成。日本語UIで直感的に操作でき、商用利用にも対応。",
+    price: "無料〜（プランにより異なる）",
+    highlight: "日本語UIで使いやすいAI画像生成",
+    affiliateUrl: "https://nanobanana.jp",
+    affiliateLabel: "ナノバナナを試す →",
+    tags: ["画像生成", "バナー", "日本語対応"],
+    isFree: true,
+  },
+  "antigravity": {
+    id: "antigravity",
+    name: "Antigravity",
+    description:
+      "AIを活用した業務支援・コンテンツ生成プラットフォーム。ソラが実際に使用・検証しているツールで、実務への導入実績あり。",
+    price: "要問い合わせ",
+    highlight: "実務検証済みのAI活用プラットフォーム",
+    affiliateUrl: "https://antigravity.jp",
+    affiliateLabel: "Antigravityを見る →",
+    tags: ["業務効率化", "AI活用", "コンテンツ生成"],
   },
   "claude-api": {
     id: "claude-api",
@@ -186,40 +228,40 @@ function getRecommendations(answers: Answers): string[] {
 
   if (useCase === "coding") {
     if (techLevel === "engineer") {
-      if (budget === "free") results = ["cursor", "claude-free", "chatgpt-free"];
-      else if (budget === "low") results = ["github-copilot", "cursor", "claude-pro"];
-      else results = ["cursor", "github-copilot", "claude-pro"];
+      results = ["cursor", "github-copilot", "claude-pro"];
     } else if (techLevel === "mid") {
-      results = ["github-copilot", "chatgpt-plus", "claude-pro"];
+      results = ["github-copilot", "cursor", "chatgpt-plus"];
     } else {
-      results = ["chatgpt-plus", "claude-pro"];
+      results = ["chatgpt-plus", "claude-pro", "cursor"];
     }
   } else if (useCase === "image") {
-    if (budget === "free") results = ["chatgpt-free", "claude-free"];
-    else results = ["midjourney", "chatgpt-plus"];
+    // 画像生成：無料でも充実したラインナップを提供
+    results = ["canva", "nanobanana", "chatgpt-free", "midjourney", "chatgpt-plus"];
   } else if (useCase === "research") {
-    if (budget === "free") results = ["perplexity", "chatgpt-free", "claude-free"];
-    else results = ["perplexity", "claude-pro", "chatgpt-plus"];
+    results = ["perplexity", "claude-pro", "chatgpt-plus"];
   } else if (useCase === "automation") {
     if (techLevel === "nocode") {
-      results = ["make", "chatgpt-plus", "notion-ai"];
+      results = ["make", "canva", "chatgpt-plus"];
     } else if (techLevel === "engineer") {
-      if (budget === "free") results = ["claude-api", "openai-api", "make"];
-      else results = ["claude-api", "make", "openai-api"];
+      results = ["claude-api", "make", "openai-api"];
     } else {
-      results = ["make", "claude-pro", "notion-ai"];
+      results = ["make", "claude-pro", "antigravity"];
     }
   } else {
     // writing (default)
-    if (budget === "free") {
-      results = ["claude-free", "chatgpt-free", "perplexity"];
-    } else if (teamSize === "team") {
-      results = ["notion-ai", "claude-pro", "chatgpt-plus"];
+    if (teamSize === "team") {
+      results = ["notion-ai", "claude-pro", "antigravity", "chatgpt-plus"];
     } else if (techLevel === "engineer") {
       results = ["claude-pro", "claude-api", "chatgpt-plus"];
     } else {
-      results = ["claude-pro", "chatgpt-plus", "notion-ai"];
+      results = ["claude-pro", "chatgpt-plus", "antigravity", "notion-ai"];
     }
+  }
+
+  // ── 無料フィルター ──────────────────────────────────────────────
+  // 「無料のみ」を選んだ場合は isFree: true のツールのみに絞る
+  if (budget === "free") {
+    results = results.filter((id) => TOOLS[id]?.isFree);
   }
 
   return [...new Set(results)].slice(0, 3);
