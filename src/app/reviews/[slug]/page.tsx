@@ -4,6 +4,7 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import { getArticleBySlug, getAllArticles } from "@/lib/mdx";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import AffiliateCard from "@/components/AffiliateCard";
 import rehypePrism from "rehype-prism-plus";
 import remarkGfm from "remark-gfm";
 import "prismjs/themes/prism-tomorrow.css";
@@ -61,6 +62,11 @@ function Stars({ count }: { count: number }) {
     </div>
   );
 }
+
+// MDX component overrides
+const components = {
+  AffiliateCard,
+};
 
 export default async function ReviewSlugPage({ params }: Props) {
   const { slug } = await params;
@@ -171,6 +177,7 @@ export default async function ReviewSlugPage({ params }: Props) {
           <div className="mdx-body">
             <MDXRemote
               source={content}
+              components={components}
               options={{
                 mdxOptions: {
                   remarkPlugins: [remarkGfm],

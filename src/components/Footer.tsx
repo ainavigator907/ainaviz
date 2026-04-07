@@ -25,6 +25,23 @@ export default function Footer() {
           </nav>
           <p>&copy; {new Date().getFullYear()} ソラの秘密基地. All rights reserved.</p>
         </div>
+        <div style={{
+          borderTop: "1px solid var(--color-border)",
+          marginTop: "1.5rem",
+          paddingTop: "1rem",
+          fontSize: "0.72rem",
+          color: "var(--color-text-muted)",
+          lineHeight: "1.7",
+          textAlign: "center",
+        }}>
+          <p>
+            当サイトは、Amazon.co.jpを宣伝しリンクすることによってサイトが紹介料を獲得できる手段を提供することを目的に設定されたアフィリエイトプログラムである、
+            <strong style={{ color: "var(--color-text-muted)" }}>Amazonアソシエイト・プログラムの参加者</strong>です。
+          </p>
+          <p style={{ marginTop: "0.4rem" }}>
+            当サイトの記事にはアフィリエイトリンクが含まれる場合があります。リンク経由でご購入いただいた際に当サイトへ報酬が発生することがあります。
+          </p>
+        </div>
       </div>
     </footer>
   );

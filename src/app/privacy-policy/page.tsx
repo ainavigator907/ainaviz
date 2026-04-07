@@ -30,7 +30,7 @@ export default function PrivacyPolicyPage() {
               Cookieを無効にする設定およびGoogleアドセンスに関する詳細は「<a href="https://policies.google.com/technologies/ads?hl=ja" target="_blank" rel="noopener noreferrer" style={{color: "var(--color-primary)", textDecoration: "underline"}}>広告 – ポリシーと規約 – Google</a>」をご覧ください。
             </p>
             <p style={{ marginTop: "1rem" }}>
-              また、当サイトは、Amazon.co.jpを宣伝しリンクすることによってサイトが紹介料を獲得できる手段を提供することを目的に設定されたアフィリエイトプログラムである、Amazonアソシエイト・プログラムの参加者です（参加予定を含みます）。
+              また、当サイトは、Amazon.co.jpを宣伝しリンクすることによってサイトが紹介料を獲得できる手段を提供することを目的に設定されたアフィリエイトプログラムである、Amazonアソシエイト・プログラムの参加者です。
             </p>
 
             <h2 style={{ marginTop: "2.5rem", marginBottom: "1rem", fontSize: "1.3rem", borderBottom: "2px solid var(--color-border)", paddingBottom: "0.5rem" }}>
