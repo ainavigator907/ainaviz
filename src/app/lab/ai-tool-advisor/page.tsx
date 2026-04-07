@@ -174,18 +174,6 @@ const TOOLS: Record<string, Tool> = {
     isAffiliate: true,
     isFree: true,
   },
-  "nanobanana": {
-    id: "nanobanana",
-    name: "ナノバナナ",
-    description:
-      "日本製のAIバナー・画像生成ツール。テキスト入力だけでSNS用バナーや広告素材を自動生成。日本語UIで直感的に操作でき、商用利用にも対応。",
-    price: "無料〜（プランにより異なる）",
-    highlight: "日本語UIで使いやすいAI画像生成",
-    affiliateUrl: "https://nanobanana.jp",
-    affiliateLabel: "ナノバナナを試す →",
-    tags: ["画像生成", "バナー", "日本語対応"],
-    isFree: true,
-  },
   "antigravity": {
     id: "antigravity",
     name: "Antigravity",
@@ -236,7 +224,7 @@ function getRecommendations(answers: Answers): string[] {
     }
   } else if (useCase === "image") {
     // 画像生成：無料でも充実したラインナップを提供
-    results = ["canva", "nanobanana", "chatgpt-free", "midjourney", "chatgpt-plus"];
+    results = ["canva", "chatgpt-free", "midjourney", "chatgpt-plus"];
   } else if (useCase === "research") {
     results = ["perplexity", "claude-pro", "chatgpt-plus"];
   } else if (useCase === "automation") {
