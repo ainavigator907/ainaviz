@@ -161,7 +161,7 @@ export default function HomePage() {
                       marginBottom: "0.4rem",
                     }}
                   >
-                    自作Windowsアプリ · 無料配布予定
+                    自作Windowsアプリ · 体験版無料配布予定
                   </div>
                   <h3
                     style={{
