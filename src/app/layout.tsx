@@ -3,6 +3,9 @@ import "./globals.css";
 import { GoogleAnalytics } from "@next/third-parties/google";
 
 export const metadata: Metadata = {
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL ?? "https://ainaviz.pages.dev"
+  ),
   title: {
     default: "ソラの秘密基地 | AI×実務の実験場",
     template: "%s | ソラの秘密基地",
