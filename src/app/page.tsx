@@ -223,6 +223,98 @@ export default function HomePage() {
           </div>
         </section>
 
+        {/* ── Section 1.5: イレルダケ スポットライト ── */}
+        <section className="section" style={{ background: "var(--color-surface)", borderTop: "1px solid var(--color-border)" }}>
+          <div className="container">
+            <div className="section-label">
+              <div className="section-label-line" />
+              <span className="section-label-text">🆕 New Release</span>
+            </div>
+            <Link href="/case-studies/irerudake-kouza-video" style={{ display: "block", textDecoration: "none" }}>
+              <div
+                className="card"
+                style={{
+                  padding: "2rem 2.5rem",
+                  background: "linear-gradient(135deg, rgba(99 102 241 / 0.08), rgba(6 182 212 / 0.06))",
+                  border: "1px solid rgba(99 102 241 / 0.3)",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "2rem",
+                  flexWrap: "wrap",
+                }}
+              >
+                <div
+                  style={{
+                    fontSize: "3rem",
+                    lineHeight: 1,
+                    flexShrink: 0,
+                  }}
+                >
+                  🎬
+                </div>
+                <div style={{ flex: 1, minWidth: "200px" }}>
+                  <div
+                    style={{
+                      fontSize: "0.7rem",
+                      fontWeight: 700,
+                      textTransform: "uppercase",
+                      letterSpacing: "0.08em",
+                      color: "var(--color-accent)",
+                      marginBottom: "0.4rem",
+                    }}
+                  >
+                    自作Windowsアプリ · 無料配布予定
+                  </div>
+                  <h3
+                    style={{
+                      fontSize: "1.25rem",
+                      fontWeight: 800,
+                      marginBottom: "0.5rem",
+                      background: "linear-gradient(135deg, var(--color-primary-light), var(--color-secondary))",
+                      WebkitBackgroundClip: "text",
+                      WebkitTextFillColor: "transparent",
+                      backgroundClip: "text",
+                    }}
+                  >
+                    イレルダケ — スマホ動画＋スライドで講座動画を自動合成
+                  </h3>
+                  <p style={{ fontSize: "0.9rem", color: "var(--color-text-muted)", lineHeight: 1.7, marginBottom: "1rem" }}>
+                    動画編集ゼロの総務部長の相談から生まれたWindowsアプリ。スマホで撮った講師映像とPowerPointのスライドをドロップするだけで、PiP合成・フェード・4K書き出しまで対応した講座動画が完成します。
+                  </p>
+                  <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap", alignItems: "center" }}>
+                    {["Claude Code", "Electron", "FFmpeg", "React"].map((tag) => (
+                      <span
+                        key={tag}
+                        style={{
+                          fontSize: "0.68rem",
+                          background: "rgba(6 182 212 / 0.1)",
+                          color: "var(--color-secondary)",
+                          border: "1px solid rgba(6 182 212 / 0.25)",
+                          borderRadius: "4px",
+                          padding: "0.15rem 0.5rem",
+                          fontWeight: 600,
+                        }}
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                    <span
+                      style={{
+                        marginLeft: "auto",
+                        fontSize: "0.85rem",
+                        color: "var(--color-primary-light)",
+                        fontWeight: 700,
+                      }}
+                    >
+                      開発実録を読む →
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </Link>
+          </div>
+        </section>
+
         {/* ── Section 2: DX実録 ── */}
         <section className="section" style={{ background: "var(--color-surface)" }}>
           <div className="container">
