@@ -128,7 +128,7 @@ export default function HomePage() {
               <div className="section-label-line" />
               <span className="section-label-text">🆕 New Release</span>
             </div>
-            <Link href="/case-studies/irerudake-kouza-video" style={{ display: "block", textDecoration: "none" }}>
+            <Link href="/lab/irerudake" style={{ display: "block", textDecoration: "none" }}>
               <div
                 className="card"
                 style={{
@@ -161,7 +161,7 @@ export default function HomePage() {
                       marginBottom: "0.4rem",
                     }}
                   >
-                    自作Windowsアプリ · 体験版無料配布予定
+                    自作Windowsアプリ · 体験版無料配布中
                   </div>
                   <h3
                     style={{
@@ -204,7 +204,7 @@ export default function HomePage() {
                         fontWeight: 700,
                       }}
                     >
-                      開発実録を読む →
+                      ダウンロードページを見る →
                     </span>
                   </div>
                 </div>

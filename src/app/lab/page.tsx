@@ -10,12 +10,22 @@ export const metadata: Metadata = {
 
 const LIVE_TOOLS = [
   {
+    id: "irerudake",
+    name: "イレルダケ",
+    description:
+      "スマホ動画＋スライドをドロップするだけで講座動画を自動合成。PiP合成・フェード・4K書き出し対応のWindowsアプリ。体験版無料配布中。",
+    aiUsed: ["Claude Code", "Electron", "FFmpeg"],
+    href: "/lab/irerudake",
+    badge: "ダウンロード可",
+  },
+  {
     id: "ai-tool-advisor",
     name: "AIツール選定アドバイザー",
     description:
       "4つの質問に答えるだけで、用途・予算・技術レベルにあったAIツールを診断。迷ったらまずここから。",
     aiUsed: ["診断ロジック", "Next.js"],
     href: "/lab/ai-tool-advisor",
+    badge: "Webアプリ",
   },
 ];
 
@@ -111,7 +121,7 @@ export default function LabPage() {
                           whiteSpace: "nowrap",
                         }}
                       >
-                        公開中
+                        {tool.badge ?? "公開中"}
                       </span>
                     </div>
                     <p style={{ fontSize: "0.875rem", color: "var(--color-text-muted)", lineHeight: 1.6 }}>
