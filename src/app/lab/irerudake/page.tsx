@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Link from "next/link";
+import DownloadModal from "./DownloadModal";
 
 export const metadata: Metadata = {
   title: "イレルダケ ダウンロード | ソラの秘密基地",
@@ -290,15 +291,9 @@ export default function IrerudakePage() {
                     </li>
                   ))}
                 </ul>
-                <a
-                  href={DOWNLOAD_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn btn-primary"
-                  style={{ textAlign: "center", marginTop: "auto" }}
-                >
-                  体験版をダウンロード →
-                </a>
+                <div style={{ marginTop: "auto" }}>
+                  <DownloadModal downloadUrl={DOWNLOAD_URL} />
+                </div>
               </div>
 
               {/* Full Plan */}
@@ -602,7 +597,7 @@ export default function IrerudakePage() {
               }}
             >
               <p style={{ fontSize: "0.875rem", color: "var(--color-text-muted)", margin: 0 }}>
-                ダウンロードおよびご利用の前に利用規約をご確認ください。
+                利用規約はダウンロードボタンから確認できます。テキストで読みたい場合はこちら。
               </p>
               <Link
                 href="/lab/irerudake/terms"
@@ -610,9 +605,10 @@ export default function IrerudakePage() {
                   fontSize: "0.85rem",
                   color: "var(--color-primary-light)",
                   fontWeight: 600,
+                  whiteSpace: "nowrap",
                 }}
               >
-                イレルダケ 利用規約 →
+                利用規約を別ページで読む →
               </Link>
             </div>
           </div>
