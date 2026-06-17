@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 
 interface Props {
   downloadUrl: string;
@@ -8,6 +9,9 @@ interface Props {
 
 export default function DownloadModal({ downloadUrl }: Props) {
   const [isOpen, setIsOpen] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => { setIsMounted(true); }, []);
 
   useEffect(() => {
     if (isOpen) {
@@ -37,7 +41,7 @@ export default function DownloadModal({ downloadUrl }: Props) {
         体験版をダウンロード →
       </button>
 
-      {isOpen && (
+      {isMounted && isOpen && createPortal(
         <div
           style={{
             position: "fixed",
@@ -230,7 +234,8 @@ export default function DownloadModal({ downloadUrl }: Props) {
               </a>
             </div>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </>
   );
