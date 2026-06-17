@@ -11,6 +11,7 @@ export const metadata: Metadata = {
 };
 
 const DOWNLOAD_URL = "https://drive.google.com/file/d/11lGVZN5_BI43Ozti1b5nzNm0ekFlz3Oe/view?usp=drive_link";
+const FULL_VERSION_URL = "https://ainaviz.lemonsqueezy.com/checkout";
 const BUG_REPORT_URL = "https://docs.google.com/forms/d/e/1FAIpQLSemVwnKU_FMdi7Q7VehwLlojhmXzaOfzRShZIrsWlc5llSAOw/viewform?usp=publish-editor";
 
 export default function IrerudakePage() {
@@ -369,22 +370,16 @@ export default function IrerudakePage() {
                     </li>
                   ))}
                 </ul>
-                <div
-                  style={{
-                    background: "rgba(99 102 241 / 0.1)",
-                    border: "1px solid rgba(99 102 241 / 0.25)",
-                    borderRadius: "var(--radius-sm)",
-                    padding: "1rem",
-                    textAlign: "center",
-                    marginTop: "auto",
-                  }}
-                >
-                  <p style={{ fontSize: "0.85rem", fontWeight: 700, color: "var(--color-primary-light)", margin: "0 0 0.25rem" }}>
-                    近日販売予定
-                  </p>
-                  <p style={{ fontSize: "0.78rem", color: "var(--color-text-muted)", margin: 0 }}>
-                    決済システムの審査が通り次第、購入できるようになります。
-                  </p>
+                <div style={{ marginTop: "auto" }}>
+                  <a
+                    href={FULL_VERSION_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn btn-primary"
+                    style={{ display: "block", textAlign: "center", width: "100%" }}
+                  >
+                    フル版購入ページ →
+                  </a>
                 </div>
               </div>
             </div>
