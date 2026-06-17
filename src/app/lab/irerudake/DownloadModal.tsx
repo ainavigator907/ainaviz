@@ -5,9 +5,11 @@ import { createPortal } from "react-dom";
 
 interface Props {
   downloadUrl: string;
+  buttonLabel?: string;
+  actionLabel?: string;
 }
 
-export default function DownloadModal({ downloadUrl }: Props) {
+export default function DownloadModal({ downloadUrl, buttonLabel = "体験版をダウンロード →", actionLabel = "承諾してダウンロード →" }: Props) {
   const [isOpen, setIsOpen] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
 
@@ -36,9 +38,9 @@ export default function DownloadModal({ downloadUrl }: Props) {
       <button
         onClick={() => setIsOpen(true)}
         className="btn btn-primary"
-        style={{ textAlign: "center", width: "100%", cursor: "pointer" }}
+        style={{ display: "flex", alignItems: "center", justifyContent: "center", width: "100%", cursor: "pointer" }}
       >
-        体験版をダウンロード →
+        {buttonLabel}
       </button>
 
       {isMounted && isOpen && createPortal(
@@ -230,7 +232,7 @@ export default function DownloadModal({ downloadUrl }: Props) {
                 className="btn btn-primary"
                 onClick={() => setIsOpen(false)}
               >
-                承諾してダウンロード →
+                {actionLabel}
               </a>
             </div>
           </div>

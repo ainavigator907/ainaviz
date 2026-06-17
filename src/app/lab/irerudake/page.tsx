@@ -371,15 +371,11 @@ export default function IrerudakePage() {
                   ))}
                 </ul>
                 <div style={{ marginTop: "auto" }}>
-                  <a
-                    href={FULL_VERSION_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="btn btn-primary"
-                    style={{ display: "block", textAlign: "center", width: "100%" }}
-                  >
-                    フル版購入ページ →
-                  </a>
+                  <DownloadModal
+                    downloadUrl={FULL_VERSION_URL}
+                    buttonLabel="フル版購入ページ →"
+                    actionLabel="承諾して購入ページへ →"
+                  />
                 </div>
               </div>
             </div>
