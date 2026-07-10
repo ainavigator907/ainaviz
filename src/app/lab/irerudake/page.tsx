@@ -10,8 +10,8 @@ export const metadata: Metadata = {
     "講師映像とPDF・画像スライドを読み込んで、どの時間帯に何を映すかをクリップで設定するだけ。PiP合成・フェード・4K書き出し対応のWindowsアプリ「イレルダケ」。体験版無料配布中。",
 };
 
-const DOWNLOAD_URL = "https://drive.google.com/file/d/11lGVZN5_BI43Ozti1b5nzNm0ekFlz3Oe/view?usp=drive_link";
-const FULL_VERSION_URL = "https://ainaviz.lemonsqueezy.com/checkout";
+const DOWNLOAD_URL = "https://github.com/ainavigator907/irerudake/releases/download/v1.5.0/Setup.1.5.0.exe";
+const FULL_VERSION_URL = "https://ainaviz.lemonsqueezy.com/checkout/buy/ab37832d-3bfe-4703-9d9c-5d9590f846d6";
 const BUG_REPORT_URL = "https://docs.google.com/forms/d/e/1FAIpQLSemVwnKU_FMdi7Q7VehwLlojhmXzaOfzRShZIrsWlc5llSAOw/viewform?usp=publish-editor";
 
 export default function IrerudakePage() {
@@ -460,26 +460,21 @@ export default function IrerudakePage() {
             </div>
             <div className="card" style={{ padding: "1.75rem 2rem", display: "flex", flexDirection: "column", gap: "1rem" }}>
               <p style={{ fontSize: "0.875rem", color: "var(--color-text-muted)", lineHeight: 1.7, marginBottom: "0.25rem" }}>
-                Google Drive からのダウンロードおよびWindowsへのインストール時に、以下の手順が必要になる場合があります。
+                ダウンロードおよびWindowsへのインストール時に、以下の手順が必要になる場合があります。
               </p>
               {[
                 {
                   step: "1",
-                  title: "Google Drive の警告",
-                  desc: "「ウイルスを確認できません」というダイアログが表示された場合は、「ダウンロード」ボタンをそのままクリックしてください。大きなファイルはウイルス自動スキャンがスキップされるため表示される案内で、ファイル自体に問題はありません。",
-                },
-                {
-                  step: "2",
                   title: "Windows SmartScreen の警告",
                   desc: "インストーラーを起動した際に「WindowsによってPCが保護されました」という画面が表示される場合があります。「詳細情報」をクリックし、表示される「実行」ボタンで続行してください。個人開発アプリのため署名証明書がなく、新しいアプリとして検出されることが原因です。",
                 },
                 {
-                  step: "3",
+                  step: "2",
                   title: "ウイルス対策ソフトの反応",
                   desc: "セキュリティソフトがアプリを誤検知する場合があります。その場合は一時的に除外設定を行うか、「許可」「信頼」として登録した上でご使用ください。",
                 },
                 {
-                  step: "4",
+                  step: "3",
                   title: "動作環境（重要）",
                   desc: "本アプリは Windows 11（64bit）での動作を確認しています。Windows 10 での動作は未確認のため保証できません。Mac・Linux には対応していません。",
                 },
@@ -491,7 +486,7 @@ export default function IrerudakePage() {
                     gap: "1rem",
                     alignItems: "flex-start",
                     paddingBottom: "1rem",
-                    borderBottom: step === "4" ? "none" : "1px solid var(--color-border)",
+                    borderBottom: step === "3" ? "none" : "1px solid var(--color-border)",
                   }}
                 >
                   <span

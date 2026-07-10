@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
+import { sendGAEvent } from "@next/third-parties/google";
 
 interface Props {
   downloadUrl: string;
@@ -36,7 +37,10 @@ export default function DownloadModal({ downloadUrl, buttonLabel = "体験版を
   return (
     <>
       <button
-        onClick={() => setIsOpen(true)}
+        onClick={() => {
+          setIsOpen(true);
+          sendGAEvent("event", "irerudake_modal_open", { plan: buttonLabel });
+        }}
         className="btn btn-primary"
         style={{ display: "flex", alignItems: "center", justifyContent: "center", width: "100%", cursor: "pointer" }}
       >
@@ -230,7 +234,10 @@ export default function DownloadModal({ downloadUrl, buttonLabel = "体験版を
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn btn-primary"
-                onClick={() => setIsOpen(false)}
+                onClick={() => {
+                  setIsOpen(false);
+                  sendGAEvent("event", "irerudake_accept_click", { plan: buttonLabel, url: downloadUrl });
+                }}
               >
                 {actionLabel}
               </a>
