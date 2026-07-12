@@ -2,12 +2,12 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { IconCompass } from "@/components/Icons";
 
 const NAV_LINKS = [
-  { href: "/lab", label: "ラボ" },
-  { href: "/case-studies", label: "DX実録" },
-  { href: "/reviews", label: "ガジェット" },
-  { href: "/guides", label: "ガイド" },
+  { href: "/lab", label: "ツール" },
+  { href: "/articles", label: "記事" },
+  { href: "/about", label: "About" },
 ];
 
 export default function Navbar() {
@@ -18,7 +18,8 @@ export default function Navbar() {
       <div className="container">
         <div className="navbar-inner">
           <Link href="/" className="navbar-logo">
-            ⚡ ソラの秘密基地
+            <IconCompass size={20} />
+            AINaviz
           </Link>
           <ul className="navbar-links">
             {NAV_LINKS.map(({ href, label }) => (
@@ -41,11 +42,11 @@ export default function Navbar() {
             ))}
           </ul>
           <Link
-            href="/case-studies"
+            href="/lab"
             className="btn btn-primary"
             style={{ fontSize: "0.85rem", padding: "0.55rem 1.1rem" }}
           >
-            DX実録を読む →
+            ツールを見る
           </Link>
         </div>
       </div>

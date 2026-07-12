@@ -4,20 +4,20 @@ import { GoogleAnalytics } from "@next/third-parties/google";
 
 export const metadata: Metadata = {
   metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL ?? "https://ainaviz.pages.dev"
+    process.env.NEXT_PUBLIC_SITE_URL ?? "https://ainaviz.com"
   ),
   title: {
-    default: "ソラの秘密基地 | AI×実務の実験場",
-    template: "%s | ソラの秘密基地",
+    default: "AINaviz | AIをビジネスの戦力にする",
+    template: "%s | AINaviz",
   },
   description:
-    "延べ3,000人規模の運用実績を持つ現役総務部長・ソラが送る、AI×実務の実験場。DX改善実録、自作ツール、ガジェット検証を発信。",
-  keywords: ["AI活用", "業務効率化", "DX", "総務", "自動化", "ガジェット", "Next.js"],
+    "AIをビジネス活用する人のナビゲーター。現役総務部長・ソラが、実務で本当に動くAIツールと活用ノウハウだけを届けます。",
+  keywords: ["AI活用", "業務効率化", "DX", "総務", "自動化", "AIツール", "Claude"],
   authors: [{ name: "ソラ" }],
   openGraph: {
     type: "website",
     locale: "ja_JP",
-    siteName: "ソラの秘密基地",
+    siteName: "AINaviz",
   },
   verification: {
     other: {

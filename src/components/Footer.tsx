@@ -1,29 +1,41 @@
 import Link from "next/link";
 
+// note / X などの外部チャネル。URLが決まり次第 href を差し替える
+const SOCIAL_LINKS: { label: string; href: string }[] = [
+  // { label: "note", href: "https://note.com/..." },
+  // { label: "X", href: "https://x.com/..." },
+];
+
 export default function Footer() {
   return (
     <footer className="footer">
       <div className="container">
         <div className="footer-inner">
           <div>
-            <p style={{ fontWeight: 800, marginBottom: "0.25rem", color: "var(--color-text)", fontSize: "1rem" }}>
-              ⚡ ソラの秘密基地
+            <p style={{ fontWeight: 800, marginBottom: "0.25rem", color: "var(--color-text)", fontSize: "1rem", letterSpacing: "0.01em" }}>
+              AINaviz
             </p>
             <p style={{ fontSize: "0.8rem" }}>
-              現役総務部長が送る、AI×実務の実験場。
+              AIをビジネス活用する人のナビゲーター。
             </p>
           </div>
           <nav>
             <ul style={{ display: "flex", gap: "1.5rem", listStyle: "none", flexWrap: "wrap" }}>
-              <li><Link href="/lab" style={{ color: "var(--color-text-muted)" }}>ラボ</Link></li>
-              <li><Link href="/case-studies" style={{ color: "var(--color-text-muted)" }}>DX実録</Link></li>
-              <li><Link href="/reviews" style={{ color: "var(--color-text-muted)" }}>ガジェット</Link></li>
-              <li><Link href="/guides" style={{ color: "var(--color-text-muted)" }}>ガイド</Link></li>
+              <li><Link href="/lab" style={{ color: "var(--color-text-muted)" }}>ツール</Link></li>
+              <li><Link href="/articles" style={{ color: "var(--color-text-muted)" }}>記事</Link></li>
+              <li><Link href="/about" style={{ color: "var(--color-text-muted)" }}>About</Link></li>
               <li><Link href="/privacy-policy" style={{ color: "var(--color-text-muted)" }}>プライバシーポリシー</Link></li>
               <li><Link href="/terms" style={{ color: "var(--color-text-muted)" }}>免責事項</Link></li>
+              {SOCIAL_LINKS.map(({ label, href }) => (
+                <li key={label}>
+                  <a href={href} target="_blank" rel="noopener noreferrer" style={{ color: "var(--color-text-muted)" }}>
+                    {label}
+                  </a>
+                </li>
+              ))}
             </ul>
           </nav>
-          <p>&copy; {new Date().getFullYear()} ソラの秘密基地. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} AINaviz. All rights reserved.</p>
         </div>
         <div style={{
           borderTop: "1px solid var(--color-border)",

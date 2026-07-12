@@ -58,7 +58,7 @@ img {
 }
 
 .section {
-  padding: 5rem 0;
+  padding: 6rem 0;
 }
 
 /* ── Typography ── */
@@ -141,8 +141,9 @@ h3 { font-size: 1.25rem; }
   text-transform: uppercase;
 }
 .badge-affiliate {
-  background: linear-gradient(135deg, var(--color-accent), #f97316);
-  color: #000;
+  background: rgba(245 158 11 / 0.12);
+  color: var(--color-accent);
+  border: 1px solid rgba(245 158 11 / 0.3);
 }
 .badge-free {
   background: rgba(16 185 129 / 0.15);
@@ -168,40 +169,6 @@ h3 { font-size: 1.25rem; }
   gap: 1.5rem;
 }
 
-/* ── Search Bar ── */
-.search-wrap {
-  position: relative;
-  max-width: 520px;
-  margin: 0 auto 2.5rem;
-}
-.search-icon {
-  position: absolute;
-  left: 1rem;
-  top: 50%;
-  transform: translateY(-50%);
-  color: var(--color-text-muted);
-  pointer-events: none;
-}
-.search-input {
-  width: 100%;
-  padding: 0.85rem 1rem 0.85rem 2.75rem;
-  background: var(--color-surface);
-  border: 1.5px solid var(--color-border);
-  border-radius: var(--radius-md);
-  color: var(--color-text);
-  font-family: var(--font-sans);
-  font-size: 0.95rem;
-  outline: none;
-  transition: var(--transition);
-}
-.search-input:focus {
-  border-color: var(--color-primary);
-  box-shadow: 0 0 0 3px rgba(99 102 241 / 0.2);
-}
-.search-input::placeholder {
-  color: var(--color-text-muted);
-}
-
 /* ── Star rating ── */
 .stars {
   display: flex;
@@ -212,8 +179,8 @@ h3 { font-size: 1.25rem; }
 
 /* ── Affiliate Card ── */
 .affiliate-card {
-  border: 1.5px solid rgba(245 158 11 / 0.4);
-  background: linear-gradient(135deg, rgba(245 158 11 / 0.06), rgba(249 115 22 / 0.06));
+  border: 1px solid rgba(245 158 11 / 0.25);
+  background: var(--color-surface);
   border-radius: var(--radius-md);
   padding: 1.75rem;
   display: flex;
@@ -222,12 +189,11 @@ h3 { font-size: 1.25rem; }
   transition: var(--transition);
 }
 .affiliate-card:hover {
-  border-color: var(--color-accent);
-  box-shadow: 0 0 30px rgba(245 158 11 / 0.2);
+  border-color: rgba(245 158 11 / 0.5);
   transform: translateY(-3px);
 }
 .affiliate-card .cta-btn {
-  background: linear-gradient(135deg, var(--color-accent), #f97316);
+  background: var(--color-accent);
   color: #000;
   font-weight: 700;
   border-radius: var(--radius-sm);
@@ -270,12 +236,16 @@ pre[class*="language-"] {
   gap: 2rem;
 }
 .navbar-logo {
-  font-size: 1.2rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-size: 1.15rem;
   font-weight: 800;
-  background: linear-gradient(135deg, var(--color-primary-light), var(--color-secondary));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  letter-spacing: 0.01em;
+  color: var(--color-text);
+}
+.navbar-logo svg {
+  color: var(--color-primary-light);
 }
 .navbar-links {
   display: flex;
@@ -398,28 +368,6 @@ pre[class*="language-"] {
   font-size: 0.875rem;
   color: var(--color-text-muted);
   line-height: 1.6;
-}
-
-/* ── Speed review bar ── */
-.speed-review {
-  display: flex;
-  gap: 0.35rem;
-  align-items: center;
-  font-size: 0.78rem;
-  color: var(--color-text-muted);
-  margin-top: 0.5rem;
-}
-.speed-bar {
-  height: 4px;
-  border-radius: 2px;
-  background: var(--color-surface-2);
-  flex: 1;
-  overflow: hidden;
-}
-.speed-fill {
-  height: 100%;
-  border-radius: 2px;
-  background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
 }
 
 /* ── Responsive ── */
