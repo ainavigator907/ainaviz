@@ -131,7 +131,7 @@ export default function DownloadModal({ downloadUrl, buttonLabel = "体験版を
               }}
             >
               <p style={{ marginTop: "1.25rem" }}>
-                本利用規約（以下「本規約」）は、AI Navigator ソラ（以下「提供者」）が提供する
+                本利用規約（以下「本規約」）は、AINaviz運営者 ソラ（以下「提供者」）が提供する
                 Windowsアプリケーション「イレルダケ」（以下「本アプリ」）の利用条件を定めるものです。
                 本アプリをダウンロードまたはご利用になることで、本規約に同意したものとみなします。
               </p>
@@ -206,7 +206,7 @@ export default function DownloadModal({ downloadUrl, buttonLabel = "体験版を
               </p>
 
               <p style={{ marginTop: "2rem", fontSize: "0.8rem", textAlign: "right" }}>
-                制定日: 2026年6月6日　AI Navigator ソラ
+                制定日: 2026年6月6日　AINaviz運営者 ソラ
               </p>
             </div>
 

@@ -1,8 +1,7 @@
 import { MetadataRoute } from "next";
 import { getAllArticles } from "@/lib/mdx";
 
-const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://ainaviz.pages.dev";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ainaviz.com";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
@@ -12,41 +11,35 @@ export default function sitemap(): MetadataRoute.Sitemap {
     {
       url: SITE_URL,
       lastModified: now,
-      changeFrequency: "daily",
+      changeFrequency: "weekly",
       priority: 1.0,
     },
     {
-      url: `${SITE_URL}/guides`,
-      lastModified: now,
-      changeFrequency: "daily",
-      priority: 0.9,
-    },
-    {
-      url: `${SITE_URL}/case-studies`,
+      url: `${SITE_URL}/lab`,
       lastModified: now,
       changeFrequency: "weekly",
       priority: 0.9,
     },
     {
-      url: `${SITE_URL}/reviews`,
+      url: `${SITE_URL}/lab/irerudake`,
       lastModified: now,
       changeFrequency: "weekly",
       priority: 0.9,
     },
     {
-      url: `${SITE_URL}/tools`,
+      url: `${SITE_URL}/lab/ai-tool-advisor`,
       lastModified: now,
       changeFrequency: "monthly",
       priority: 0.7,
     },
     {
-      url: `${SITE_URL}/lab`,
+      url: `${SITE_URL}/articles`,
       lastModified: now,
-      changeFrequency: "monthly",
-      priority: 0.6,
+      changeFrequency: "weekly",
+      priority: 0.9,
     },
     {
-      url: `${SITE_URL}/lab/ai-tool-advisor`,
+      url: `${SITE_URL}/about`,
       lastModified: now,
       changeFrequency: "monthly",
       priority: 0.6,
@@ -67,7 +60,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   // ── 記事ページ（MDXから動的生成）──────────────────────────────────────────
   const articleRoutes: MetadataRoute.Sitemap = (
-    ["guides", "case-studies", "reviews"] as const
+    ["guides", "case-studies"] as const
   ).flatMap((folder) =>
     getAllArticles(folder).map((article) => ({
       url: `${SITE_URL}/${folder}/${article.slug}`,

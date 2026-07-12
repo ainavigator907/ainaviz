@@ -4,7 +4,7 @@ import Footer from "@/components/Footer";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "イレルダケ 利用規約 | ソラの秘密基地",
+  title: "イレルダケ 利用規約",
   description: "Windowsアプリ「イレルダケ」の利用規約。体験版・フル版ライセンス条件、免責事項について。",
 };
 
@@ -37,7 +37,7 @@ export default function IrerudakeTermsPage() {
 
           <div className="card" style={{ padding: "clamp(1.5rem, 5vw, 3rem)", lineHeight: "1.8" }}>
             <p>
-              本利用規約（以下「本規約」）は、AI Navigator ソラ（以下「提供者」）が提供する
+              本利用規約（以下「本規約」）は、AINaviz運営者 ソラ（以下「提供者」）が提供する
               Windowsアプリケーション「イレルダケ」（以下「本アプリ」）の利用条件を定めるものです。
               本アプリをダウンロードまたはご利用になることで、本規約に同意したものとみなします。
             </p>
@@ -138,7 +138,7 @@ export default function IrerudakeTermsPage() {
               }}
             >
               <p>制定日: 2026年6月6日</p>
-              <p>AI Navigator ソラ</p>
+              <p>AINaviz運営者 ソラ</p>
             </div>
           </div>
 

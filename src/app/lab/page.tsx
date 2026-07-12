@@ -2,10 +2,12 @@ import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Link from "next/link";
+import { IconFlask, IconWrench, IconVideo, IconCompass } from "@/components/Icons";
 
 export const metadata: Metadata = {
-  title: "ラボ",
-  description: "ソラが開発中の自作ツール・ゲームの展示場。AI×実務で生まれたプロダクトを公開予定。",
+  title: "ツール",
+  description:
+    "現場の課題から生まれた自作ツール置き場。実務で検証済みのアプリを無料・体験版で公開しています。",
 };
 
 const LIVE_TOOLS = [
@@ -13,58 +15,33 @@ const LIVE_TOOLS = [
     id: "irerudake",
     name: "イレルダケ",
     description:
-      "スマホ動画＋スライドをドロップするだけで講座動画を自動合成。PiP合成・フェード・4K書き出し対応のWindowsアプリ。体験版無料配布中。",
+      "講師映像とスライドを読み込んで、区間ごとに見せ方を指定するだけで講座動画が完成するWindowsアプリ。PiP合成・フェード・4K書き出し対応。",
     aiUsed: ["Claude Code", "Electron", "FFmpeg"],
     href: "/lab/irerudake",
-    badge: "ダウンロード可",
+    badge: "無料体験版あり",
+    icon: IconVideo,
   },
   {
     id: "ai-tool-advisor",
     name: "AIツール選定アドバイザー",
     description:
-      "4つの質問に答えるだけで、用途・予算・技術レベルにあったAIツールを診断。迷ったらまずここから。",
+      "4つの質問に答えるだけで、用途・予算・技術レベルにあったAIツールを診断。導入の最初の一歩に。",
     aiUsed: ["診断ロジック", "Next.js"],
     href: "/lab/ai-tool-advisor",
-    badge: "Webアプリ",
+    badge: "Web版・無料",
+    icon: IconCompass,
   },
 ];
 
 const UPCOMING_TOOLS = [
   {
-    id: "meeting-minutes",
-    name: "議事録AI自動生成",
+    id: "kouza-recorder",
+    name: "講座動画録画ツール",
     description:
-      "Whisper で音声を文字起こしし、Claude が要約・アクションアイテムを自動抽出。5分の会議録音を30秒で議事録化。",
-    aiUsed: ["Whisper", "Claude"],
+      "スライドを映しながら講師の映像と音声をそのまま収録できる録画ツール。撮影から完成まで、イレルダケとつなげて講座動画づくりを一気通貫にします。",
+    aiUsed: ["Claude Code", "Electron"],
     background:
-      "社内会議の議事録作成に毎週数時間を費やしていた実体験から着想。",
-  },
-  {
-    id: "approval-doc-gen",
-    name: "稟議書ジェネレーター",
-    description:
-      "製品URLと用途を入力するだけで、上司が承認しやすいスペック比較表・費用対効果付きの稟議書を自動生成。",
-    aiUsed: ["Claude", "Next.js"],
-    background:
-      "「なぜこれが必要か」を論理立てて書く稟議書は時間がかかる。フォーマット化とAI生成で工数を90%削減することが目標。",
-  },
-  {
-    id: "ai-cost-monitor",
-    name: "AI利用コストモニター",
-    description:
-      "Claude / GPT / Gemini の API利用コストをリアルタイム集計。`max_history_tokens` 設定との連動でコスト爆増を防ぐ。",
-    aiUsed: ["Claude API", "OpenAI API", "Next.js"],
-    background:
-      "Claude Codeを使い始めて月のAPI費用が跳ね上がった実体験から。コスト可視化と自動アラートで適正利用を維持したい。",
-  },
-  {
-    id: "manual-generator",
-    name: "社内マニュアル自動生成",
-    description:
-      "業務フローを箇条書きで入力すると、Notion互換のMarkdown形式で誰でも読める手順書を自動生成。",
-    aiUsed: ["Claude", "Notion API"],
-    background:
-      "属人化した業務ノウハウを誰でもアクセスできる形に変換したい。口頭説明をAIがマニュアル化するフローを構築中。",
+      "イレルダケの利用者から「そもそも撮影の段階でつまずく」という声を受けて開発中。録画から合成までを同じ流れで完結させることが目標です。",
   },
 ];
 
@@ -76,16 +53,12 @@ export default function LabPage() {
         {/* ── Hero ── */}
         <section style={{ padding: "5rem 0 3rem", borderBottom: "1px solid var(--color-border)" }}>
           <div className="container">
-            <div className="hero-eyebrow">
-              <span>🔬</span>
-              <span>Lab · 実験場</span>
-            </div>
-            <h1 style={{ marginBottom: "1rem" }}>
-              <span className="gradient-text">ソラの実験場</span>
+            <h1 style={{ marginBottom: "1rem", fontSize: "clamp(1.75rem, 4vw, 2.75rem)" }}>
+              ツール
             </h1>
-            <p style={{ color: "var(--color-text-muted)", fontSize: "1.1rem", maxWidth: "600px", lineHeight: 1.7 }}>
-              実務で「あったら便利」を形にしたツール置き場。
-              開発中のものも含め、背景とコンセプトを公開しています。
+            <p style={{ color: "var(--color-text-muted)", fontSize: "1.05rem", maxWidth: "620px", lineHeight: 1.8 }}>
+              現場の「あったら便利」を形にした自作ツール置き場。
+              すべて実務の課題から生まれ、実際に使いながら育てています。
             </p>
           </div>
         </section>
@@ -95,23 +68,26 @@ export default function LabPage() {
           <div className="container">
             <div className="section-label" style={{ marginBottom: "1.25rem" }}>
               <div className="section-label-line" />
-              <span className="section-label-text">✅ 公開中</span>
+              <span className="section-label-text" style={{ display: "inline-flex", alignItems: "center", gap: "0.4rem" }}>
+                <IconFlask size={14} /> 公開中
+              </span>
             </div>
             <div className="tool-grid" style={{ marginBottom: "4rem" }}>
               {LIVE_TOOLS.map((tool) => (
                 <Link key={tool.id} href={tool.href} style={{ display: "block" }}>
                   <div
                     className="card"
-                    style={{ padding: "1.5rem", display: "flex", flexDirection: "column", gap: "0.85rem", height: "100%" }}
+                    style={{ padding: "1.75rem", display: "flex", flexDirection: "column", gap: "0.85rem", height: "100%" }}
                   >
                     <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: "0.5rem" }}>
-                      <h3 style={{ fontSize: "1rem", lineHeight: 1.4 }}>{tool.name}</h3>
+                      <span style={{ color: "var(--color-primary-light)" }}>
+                        <tool.icon size={26} />
+                      </span>
                       <span
                         style={{
                           flexShrink: 0,
                           fontSize: "0.68rem",
                           fontWeight: 700,
-                          textTransform: "uppercase",
                           letterSpacing: "0.06em",
                           background: "rgba(16 185 129 / 0.15)",
                           color: "var(--color-success)",
@@ -121,10 +97,11 @@ export default function LabPage() {
                           whiteSpace: "nowrap",
                         }}
                       >
-                        {tool.badge ?? "公開中"}
+                        {tool.badge}
                       </span>
                     </div>
-                    <p style={{ fontSize: "0.875rem", color: "var(--color-text-muted)", lineHeight: 1.6 }}>
+                    <h3 style={{ fontSize: "1.05rem", lineHeight: 1.4, margin: 0 }}>{tool.name}</h3>
+                    <p style={{ fontSize: "0.875rem", color: "var(--color-text-muted)", lineHeight: 1.7, margin: 0 }}>
                       {tool.description}
                     </p>
                     <div style={{ display: "flex", gap: "0.35rem", flexWrap: "wrap", marginTop: "auto" }}>
@@ -146,7 +123,7 @@ export default function LabPage() {
                       ))}
                     </div>
                     <span style={{ fontSize: "0.82rem", color: "var(--color-primary-light)", fontWeight: 600 }}>
-                      ツールを使う →
+                      ツールを見る →
                     </span>
                   </div>
                 </Link>
@@ -155,48 +132,30 @@ export default function LabPage() {
           </div>
         </section>
 
-        {/* ── 準備中バナー ── */}
-        <section style={{ padding: "0 0 3rem" }}>
+        {/* ── 開発中 ── */}
+        <section style={{ padding: "0 0 4rem" }}>
           <div className="container">
             <div className="section-label" style={{ marginBottom: "1.25rem" }}>
               <div className="section-label-line" />
-              <span className="section-label-text">🚧 開発中</span>
-            </div>
-            <div
-              style={{
-                background: "linear-gradient(135deg, rgba(99 102 241 / 0.08), rgba(6 182 212 / 0.06))",
-                border: "1px solid rgba(99 102 241 / 0.3)",
-                borderRadius: "var(--radius-lg)",
-                padding: "2rem",
-                textAlign: "center",
-                marginBottom: "2rem",
-              }}
-            >
-              <p style={{ color: "var(--color-text-muted)", lineHeight: 1.7, maxWidth: "500px", margin: "0 auto 1.25rem", fontSize: "0.9rem" }}>
-                使えるもの(公開できる段階になったもの)から順次リリース予定です。
-              </p>
-              <Link href="/case-studies" className="btn btn-outline">
-                開発背景の実録記事を読む →
-              </Link>
+              <span className="section-label-text" style={{ display: "inline-flex", alignItems: "center", gap: "0.4rem" }}>
+                <IconWrench size={14} /> 開発中
+              </span>
             </div>
 
-            {/* Tool Cards */}
             <div className="tool-grid">
               {UPCOMING_TOOLS.map((tool) => (
                 <div
                   key={tool.id}
                   className="card"
-                  style={{ padding: "1.5rem", display: "flex", flexDirection: "column", gap: "0.85rem" }}
+                  style={{ padding: "1.75rem", display: "flex", flexDirection: "column", gap: "0.85rem" }}
                 >
-                  {/* Header */}
                   <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: "0.5rem" }}>
-                    <h3 style={{ fontSize: "1rem", lineHeight: 1.4 }}>{tool.name}</h3>
+                    <h3 style={{ fontSize: "1.05rem", lineHeight: 1.4, margin: 0 }}>{tool.name}</h3>
                     <span
                       style={{
                         flexShrink: 0,
                         fontSize: "0.68rem",
                         fontWeight: 700,
-                        textTransform: "uppercase",
                         letterSpacing: "0.06em",
                         background: "rgba(99 102 241 / 0.15)",
                         color: "var(--color-primary-light)",
@@ -206,16 +165,14 @@ export default function LabPage() {
                         whiteSpace: "nowrap",
                       }}
                     >
-                      準備中
+                      開発中
                     </span>
                   </div>
 
-                  {/* Description */}
-                  <p style={{ fontSize: "0.875rem", color: "var(--color-text-muted)", lineHeight: 1.6 }}>
+                  <p style={{ fontSize: "0.875rem", color: "var(--color-text-muted)", lineHeight: 1.7, margin: 0 }}>
                     {tool.description}
                   </p>
 
-                  {/* Background */}
                   <div
                     style={{
                       background: "var(--color-surface-2)",
@@ -223,7 +180,7 @@ export default function LabPage() {
                       padding: "0.75rem 1rem",
                       fontSize: "0.8rem",
                       color: "var(--color-text-muted)",
-                      lineHeight: 1.6,
+                      lineHeight: 1.7,
                       borderLeft: "3px solid var(--color-primary)",
                     }}
                   >
@@ -233,7 +190,6 @@ export default function LabPage() {
                     {tool.background}
                   </div>
 
-                  {/* AI Tags */}
                   <div style={{ display: "flex", gap: "0.35rem", flexWrap: "wrap", marginTop: "auto" }}>
                     {tool.aiUsed.map((ai) => (
                       <span

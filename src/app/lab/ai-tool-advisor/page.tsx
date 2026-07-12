@@ -262,11 +262,11 @@ const STEPS = [
     question: "主な用途を教えてください",
     subtext: "最も近いものを1つ選んでください",
     options: [
-      { value: "writing", label: "文書作成・要約", icon: "📝", desc: "議事録・稟議書・メール・マニュアル" },
-      { value: "coding", label: "コード生成・開発", icon: "💻", desc: "プログラミング・コードレビュー・デバッグ" },
-      { value: "research", label: "調査・リサーチ", icon: "🔍", desc: "競合分析・情報収集・事実確認" },
-      { value: "image", label: "画像・クリエイティブ", icon: "🎨", desc: "素材作成・デザイン・プレゼン用画像" },
-      { value: "automation", label: "業務自動化", icon: "⚙️", desc: "ワークフロー・繰り返し作業の自動化" },
+      { value: "writing", label: "文書作成・要約", desc: "議事録・稟議書・メール・マニュアル" },
+      { value: "coding", label: "コード生成・開発", desc: "プログラミング・コードレビュー・デバッグ" },
+      { value: "research", label: "調査・リサーチ", desc: "競合分析・情報収集・事実確認" },
+      { value: "image", label: "画像・クリエイティブ", desc: "素材作成・デザイン・プレゼン用画像" },
+      { value: "automation", label: "業務自動化", desc: "ワークフロー・繰り返し作業の自動化" },
     ],
   },
   {
@@ -274,9 +274,9 @@ const STEPS = [
     question: "あなたの技術レベルは？",
     subtext: "正直に選ぶほど精度が上がります",
     options: [
-      { value: "nocode", label: "ノーコード派", icon: "🙋", desc: "コードは書かない・書けない" },
-      { value: "mid", label: "多少の知識あり", icon: "🔧", desc: "簡単なスクリプトなら書ける" },
-      { value: "engineer", label: "エンジニア", icon: "👨‍💻", desc: "APIを自分で叩ける・コード生産が主業務" },
+      { value: "nocode", label: "ノーコード派", desc: "コードは書かない・書けない" },
+      { value: "mid", label: "多少の知識あり", desc: "簡単なスクリプトなら書ける" },
+      { value: "engineer", label: "エンジニア", desc: "APIを自分で叩ける・コード生産が主業務" },
     ],
   },
   {
@@ -284,9 +284,9 @@ const STEPS = [
     question: "月の予算感は？",
     subtext: "AIツールへの月額投資の目安",
     options: [
-      { value: "free", label: "無料のみ", icon: "🆓", desc: "まずは無料ツールで試したい" },
-      { value: "low", label: "月額3,000円以下", icon: "💰", desc: "コスパを重視したい" },
-      { value: "high", label: "月額3,000円以上もOK", icon: "💎", desc: "業務効率化なら投資できる" },
+      { value: "free", label: "無料のみ", desc: "まずは無料ツールで試したい" },
+      { value: "low", label: "月額3,000円以下", desc: "コスパを重視したい" },
+      { value: "high", label: "月額3,000円以上もOK", desc: "業務効率化なら投資できる" },
     ],
   },
   {
@@ -294,8 +294,8 @@ const STEPS = [
     question: "個人利用 or チーム利用？",
     subtext: "利用規模によって最適なツールが変わります",
     options: [
-      { value: "solo", label: "個人利用", icon: "👤", desc: "自分1人で使う" },
-      { value: "team", label: "チーム・組織", icon: "👥", desc: "複数人で共有・展開したい" },
+      { value: "solo", label: "個人利用", desc: "自分1人で使う" },
+      { value: "team", label: "チーム・組織", desc: "複数人で共有・展開したい" },
     ],
   },
 ];
@@ -349,7 +349,6 @@ export default function AiToolAdvisorPage() {
               </Link>
             </div>
             <div className="hero-eyebrow">
-              <span>🤖</span>
               <span>Lab Tool · AIツール選定アドバイザー</span>
             </div>
             <h1 style={{ marginBottom: "0.75rem" }}>
@@ -433,7 +432,6 @@ export default function AiToolAdvisorPage() {
                           (e.currentTarget as HTMLButtonElement).style.transform = "translateY(0)";
                         }}
                       >
-                        <span style={{ fontSize: "1.75rem", flexShrink: 0, lineHeight: 1 }}>{opt.icon}</span>
                         <div>
                           <p style={{ fontWeight: 700, fontSize: "0.95rem", marginBottom: "0.15rem" }}>{opt.label}</p>
                           <p style={{ fontSize: "0.8rem", color: "var(--color-text-muted)" }}>{opt.desc}</p>
@@ -475,7 +473,6 @@ export default function AiToolAdvisorPage() {
                       marginBottom: "2.5rem",
                     }}
                   >
-                    <div style={{ fontSize: "2.5rem", marginBottom: "0.75rem" }}>🎯</div>
                     <h2 style={{ marginBottom: "0.5rem" }}>診断完了！あなたへのおすすめ</h2>
                     <p style={{ color: "var(--color-text-muted)", fontSize: "0.9rem" }}>
                       回答内容をもとに、今すぐ使えるツールを厳選しました
@@ -580,7 +577,7 @@ export default function AiToolAdvisorPage() {
                                 ))}
                               </div>
                               <span style={{ fontSize: "0.8rem", color: "var(--color-text-muted)", fontWeight: 600 }}>
-                                💴 {tool.price}
+                                {tool.price}
                               </span>
                             </div>
 

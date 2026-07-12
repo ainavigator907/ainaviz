@@ -64,7 +64,7 @@ export default function AffiliateCard({
       <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: "0.75rem" }}>
         <div>
           <span className="badge badge-affiliate" style={{ marginBottom: "0.5rem" }}>
-            💰 {badgeLabel}
+            {badgeLabel}
           </span>
           <h3 style={{ fontSize: "1.2rem", fontWeight: 800 }}>{name}</h3>
         </div>
@@ -90,7 +90,7 @@ export default function AffiliateCard({
           fontSize: "0.85rem",
         }}
       >
-        <span style={{ fontWeight: 600, color: "var(--color-accent)" }}>✦ ポイント: </span>
+        <span style={{ fontWeight: 600, color: "var(--color-accent)" }}>ポイント: </span>
         {highlight}
       </div>
 

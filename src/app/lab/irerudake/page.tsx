@@ -5,7 +5,7 @@ import Link from "next/link";
 import DownloadModal from "./DownloadModal";
 
 export const metadata: Metadata = {
-  title: "イレルダケ ダウンロード | ソラの秘密基地",
+  title: "イレルダケ ダウンロード",
   description:
     "講師映像とPDF・画像スライドを読み込んで、どの時間帯に何を映すかをクリップで設定するだけ。PiP合成・フェード・4K書き出し対応のWindowsアプリ「イレルダケ」。体験版無料配布中。",
 };
@@ -24,7 +24,6 @@ export default function IrerudakePage() {
         <section style={{ padding: "5rem 0 4rem", borderBottom: "1px solid var(--color-border)" }}>
           <div className="container">
             <div className="hero-eyebrow">
-              <span>🎬</span>
               <span>自作Windowsアプリ · ver 1.5.0 · ダウンロード</span>
             </div>
             <h1 style={{ marginBottom: "1rem" }}>
@@ -64,7 +63,7 @@ export default function IrerudakePage() {
           <div className="container" style={{ maxWidth: "860px" }}>
             <div className="section-label" style={{ marginBottom: "1.5rem" }}>
               <div className="section-label-line" />
-              <span className="section-label-text">▶ 動作デモ</span>
+              <span className="section-label-text">動作デモ</span>
             </div>
             <div
               style={{
@@ -99,7 +98,7 @@ export default function IrerudakePage() {
           <div className="container" style={{ maxWidth: "860px" }}>
             <div className="section-label" style={{ marginBottom: "1.5rem" }}>
               <div className="section-label-line" />
-              <span className="section-label-text">🚀 たった4ステップで完成</span>
+              <span className="section-label-text">たった4ステップで完成</span>
             </div>
             <div
               style={{
@@ -111,29 +110,25 @@ export default function IrerudakePage() {
               {[
                 {
                   step: "1",
-                  icon: "🎥",
                   title: "講師映像を読み込む",
                   desc: "MP4・MOV・AVIなど主要形式に対応。ドラッグ＆ドロップまたはクリックで選択。",
                 },
                 {
                   step: "2",
-                  icon: "📄",
                   title: "スライドを読み込む",
                   desc: "PDFを選ぶと各ページが自動で画像に変換。PNG・JPGなどの画像も複数まとめて追加可。",
                 },
                 {
                   step: "3",
-                  icon: "⏱",
                   title: "クリップを設定する",
                   desc: "開始〜終了時刻と表示モードを指定するだけ。プレビューでリアルタイムに確認できます。",
                 },
                 {
                   step: "4",
-                  icon: "✅",
                   title: "MP4として書き出す",
                   desc: "1080p・1440p・4Kから選択して書き出し（30fps固定）。進捗バーで完了まで確認できます。",
                 },
-              ].map(({ step, icon, title, desc }) => (
+              ].map(({ step, title, desc }) => (
                 <div
                   key={step}
                   className="card"
@@ -158,7 +153,6 @@ export default function IrerudakePage() {
                   >
                     {step}
                   </span>
-                  <span style={{ fontSize: "1.75rem", lineHeight: 1 }}>{icon}</span>
                   <h3 style={{ fontSize: "0.95rem", marginBottom: 0, paddingRight: "2rem" }}>{title}</h3>
                   <p style={{ fontSize: "0.82rem", color: "var(--color-text-muted)", lineHeight: 1.7, margin: 0 }}>
                     {desc}
@@ -174,7 +168,7 @@ export default function IrerudakePage() {
           <div className="container" style={{ maxWidth: "860px" }}>
             <div className="section-label" style={{ marginBottom: "1.5rem" }}>
               <div className="section-label-line" />
-              <span className="section-label-text">✨ 主な機能</span>
+              <span className="section-label-text">主な機能</span>
             </div>
             <div
               style={{
@@ -185,42 +179,35 @@ export default function IrerudakePage() {
             >
               {[
                 {
-                  icon: "🎬",
                   title: "3つの表示モード",
                   desc: "①講師映像のみ ②スライド全画面＋講師PiP（ワイプ） ③スライド全画面＋講師音声のみ — 場面に合わせて使い分け可能。",
                 },
                 {
-                  icon: "📁",
                   title: "豊富なファイル形式に対応",
                   desc: "動画はMP4・MOV・AVI・MKVなど13形式対応。スライドはPNG・JPG等の画像またはPDF（自動変換）。スマホ撮影動画もそのまま使えます。",
                 },
                 {
-                  icon: "🔲",
                   title: "PiP（ワイプ）を細かく調整",
                   desc: "講師映像の配置（4隅）・サイズ（15〜50%）・形状（四角／円形）・枠線・影の有無を設定可能。",
                 },
                 {
-                  icon: "✂️",
                   title: "クリップ間のフェード効果",
                   desc: "カット（即時切り替え）またはクロスフェード（0.1〜2.0秒）を選択。フェードはスライドに適用され、講師映像は途切れずに流れます。",
                 },
                 {
-                  icon: "🏷️",
                   title: "ロゴ画像を重ねられる",
                   desc: "会社ロゴや番組ロゴを最大4枚まで追加。縦・横位置とサイズを個別に調整可能。透過PNGに対応。",
                 },
                 {
-                  icon: "💾",
                   title: "プロジェクト保存・再開",
                   desc: "クリップ設定をJSONファイルとして保存し、後から再開できます。ファイルパスをもとに素材を自動で再読み込み。",
                 },
-              ].map(({ icon, title, desc }) => (
+              ].map(({ title, desc }) => (
                 <div
                   key={title}
                   className="card"
                   style={{ padding: "1.5rem", display: "flex", flexDirection: "column", gap: "0.5rem" }}
                 >
-                  <span style={{ fontSize: "1.5rem", lineHeight: 1 }}>{icon}</span>
                   <h3 style={{ fontSize: "1rem", marginBottom: 0 }}>{title}</h3>
                   <p style={{ fontSize: "0.82rem", color: "var(--color-text-muted)", lineHeight: 1.7, margin: 0 }}>
                     {desc}
@@ -236,7 +223,7 @@ export default function IrerudakePage() {
           <div className="container" style={{ maxWidth: "860px" }}>
             <div className="section-label" style={{ marginBottom: "1.5rem" }}>
               <div className="section-label-line" />
-              <span className="section-label-text">💴 プランと価格</span>
+              <span className="section-label-text">プランと価格</span>
             </div>
             <div
               style={{
@@ -282,10 +269,10 @@ export default function IrerudakePage() {
                 </div>
                 <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "0.6rem" }}>
                   {[
-                    "✅ 全機能を試せる",
-                    "✅ Windows 11 対応",
-                    "⏱ 書き出しは15分まで",
-                    "💧 書き出し動画にウォーターマーク付き",
+                    "全機能を試せる",
+                    "Windows 11 対応",
+                    "※ 書き出しは15分まで",
+                    "※ 書き出し動画にウォーターマーク付き",
                   ].map((item) => (
                     <li key={item} style={{ fontSize: "0.875rem", color: "var(--color-text-muted)" }}>
                       {item}
@@ -337,33 +324,26 @@ export default function IrerudakePage() {
                       padding: "0.2rem 0.7rem",
                     }}
                   >
-                    🎁 先着10名 特別価格
+                    リリース記念価格
                   </span>
                 </div>
                 <div>
                   <p style={{ margin: 0 }}>
                     <span style={{ fontSize: "2rem", fontWeight: 800 }}>¥1,980</span>
-                    <span
-                      style={{
-                        fontSize: "1rem",
-                        color: "var(--color-text-muted)",
-                        textDecoration: "line-through",
-                        marginLeft: "0.5rem",
-                      }}
-                    >
-                      ¥2,980
+                    <span style={{ fontSize: "0.9rem", color: "var(--color-text-muted)", marginLeft: "0.5rem" }}>
+                      買い切り
                     </span>
                   </p>
                   <p style={{ fontSize: "0.82rem", color: "var(--color-text-muted)", margin: "0.25rem 0 0" }}>
-                    先着10名様限定価格（11名目以降は通常価格）
+                    リリース記念価格（予告なく変更する場合があります）
                   </p>
                 </div>
                 <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "0.6rem" }}>
                   {[
-                    "✅ 書き出し時間制限なし",
-                    "✅ ウォーターマークなし",
-                    "✅ 今後の機能追加も対象",
-                    "✅ Windows 11 対応",
+                    "書き出し時間制限なし",
+                    "ウォーターマークなし",
+                    "今後の機能追加も対象",
+                    "Windows 11 対応",
                   ].map((item) => (
                     <li key={item} style={{ fontSize: "0.875rem", color: "var(--color-text-muted)" }}>
                       {item}
@@ -387,7 +367,7 @@ export default function IrerudakePage() {
           <div className="container" style={{ maxWidth: "860px" }}>
             <div className="section-label" style={{ marginBottom: "1.5rem" }}>
               <div className="section-label-line" />
-              <span className="section-label-text">💻 動作環境・推奨スペック</span>
+              <span className="section-label-text">動作環境・推奨スペック</span>
             </div>
             <div
               style={{
@@ -400,7 +380,7 @@ export default function IrerudakePage() {
                 {
                   label: "OS",
                   value: "Windows 11（64bit）",
-                  note: "✅ 動作確認済み\n⚠️ Windows 10 は動作未確認\n❌ Mac / Linux 非対応",
+                  note: "動作確認済み。Windows 10 は動作未確認です。Mac / Linux には対応していません。",
                 },
                 {
                   label: "CPU",
@@ -456,7 +436,7 @@ export default function IrerudakePage() {
           <div className="container" style={{ maxWidth: "860px" }}>
             <div className="section-label" style={{ marginBottom: "1.5rem" }}>
               <div className="section-label-line" />
-              <span className="section-label-text">📋 ダウンロード・インストールの注意点</span>
+              <span className="section-label-text">ダウンロード・インストールの注意点</span>
             </div>
             <div className="card" style={{ padding: "1.75rem 2rem", display: "flex", flexDirection: "column", gap: "1rem" }}>
               <p style={{ fontSize: "0.875rem", color: "var(--color-text-muted)", lineHeight: 1.7, marginBottom: "0.25rem" }}>
@@ -532,14 +512,13 @@ export default function IrerudakePage() {
                 alignItems: "flex-start",
               }}
             >
-              <span style={{ fontSize: "1.5rem", flexShrink: 0 }}>🤖</span>
               <div>
                 <p style={{ fontWeight: 700, marginBottom: "0.4rem", color: "var(--color-accent)" }}>
-                  AIによって作成されたツールです
+                  個人開発アプリです
                 </p>
                 <p style={{ fontSize: "0.875rem", color: "var(--color-text-muted)", lineHeight: 1.7, margin: 0 }}>
-                  このアプリは Claude Code（AI）を活用して開発されています。予期しない動作や不具合が生じる場合があります。
-                  問題を発見された場合は、下記の不具合報告フォームからご連絡ください。<strong>極力早く修正対応いたします。</strong>
+                  このアプリは開発者が Claude Code（AI）を活用して個人開発し、実際の講座動画制作の現場で使いながら改良を続けています。
+                  万一不具合を見つけた場合は、下記のフォームからご連絡ください。<strong>確認のうえ、極力早く修正対応いたします。</strong>
                 </p>
               </div>
             </div>
@@ -551,7 +530,7 @@ export default function IrerudakePage() {
           <div className="container" style={{ maxWidth: "860px" }}>
             <div className="section-label" style={{ marginBottom: "1.5rem" }}>
               <div className="section-label-line" />
-              <span className="section-label-text">🐛 不具合報告・お問い合わせ</span>
+              <span className="section-label-text">不具合報告・お問い合わせ</span>
             </div>
             <div className="card" style={{ padding: "2rem", textAlign: "center" }}>
               <p style={{ color: "var(--color-text-muted)", lineHeight: 1.8, marginBottom: "1.5rem", maxWidth: "500px", margin: "0 auto 1.5rem" }}>

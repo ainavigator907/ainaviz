@@ -61,7 +61,7 @@ export default async function CaseStudySlugPage({ params }: Props) {
                     padding: "0.2rem 0.6rem",
                   }}
                 >
-                  📊 {frontmatter.scale}
+                  {frontmatter.scale}
                 </span>
               )}
               {frontmatter.tags?.map((tag) => (
@@ -96,7 +96,7 @@ export default async function CaseStudySlugPage({ params }: Props) {
             >
               <time dateTime={frontmatter.date}>{frontmatter.date}</time>
               {frontmatter.author && <span>by {frontmatter.author}</span>}
-              {frontmatter.readTime && <span>⏱ {frontmatter.readTime}</span>}
+              {frontmatter.readTime && <span>{frontmatter.readTime}</span>}
             </div>
 
             {/* AI Used */}
