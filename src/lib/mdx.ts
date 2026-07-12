@@ -4,7 +4,7 @@ import matter from "gray-matter";
 
 const CONTENT_DIR = path.join(process.cwd(), "content");
 
-export type ContentFolder = "guides" | "tools" | "case-studies" | "reviews";
+export type ContentFolder = "guides" | "case-studies";
 
 export interface ArticleFrontmatter {
   title: string;
@@ -16,13 +16,11 @@ export interface ArticleFrontmatter {
   videoUrl?: string;
   author?: string;
   affiliate?: boolean;
+  featured?: boolean;
   // case-studies specific
   scale?: string;
   aiUsed?: string[];
   readTime?: string;
-  // reviews specific
-  rating?: number;
-  products?: string[];
 }
 
 export interface Article {
